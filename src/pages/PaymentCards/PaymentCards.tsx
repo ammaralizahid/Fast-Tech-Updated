@@ -125,14 +125,14 @@ export default function PaymentCards() {
       <ToastContainer />
 
       <div className='bg-black'>
-        <div className="container mx-auto">
+        <div className="container-fluid bg-black mx-auto">
           <div className="shadow-md py-5">
             <div className='row'>
-              <div className='col-lg-6 bg-black flex-none bg-black h-[90vh] border-2 border-green-500 rounded-lg'>
+              <div className='col-lg-6 col-sm-12 bg-black mb-5 flex-none bg-black h-[100%] border-2 border-green-500 rounded-lg'>
                 <div className='p-5 row'>
                   {
                     paymentCards?.map((value: any, index) => (
-                      <div className='col-6 mb-3'>
+                      <div className='col-lg-6 col-sm-12 mb-3'>
                         <div className={`flex items-center bg-black p-2 w-[250px] h-[70px] border-2 border-green-500 rounded-lg cursor-pointer`} onClick={() => setDefaultPayment(value.payment_id)}>
                           <CiCreditCard1 className={`${value.default_card === "1" ? 'text-green-500 text-4xl' : 'text-green-500 text-xl'}  cursor-pointer`} />
                           <div className='ml-10'>
@@ -162,7 +162,7 @@ export default function PaymentCards() {
               <div className='col-lg-1'>
 
               </div>
-              <div className='col-lg-5 bg-black flex-none bg-black h-[90vh] border-2 border-green-500 rounded-lg'>
+              <div className='col-lg-5 bg-black col-sm-12 flex-none bg-black h-[100%] pb-5 border-2 border-green-500 rounded-lg'>
 
                 <div className='flex justify-between p-3'>
                   <h1 className="text-xl text-bold text-white ">Add Card</h1>
@@ -217,7 +217,7 @@ export default function PaymentCards() {
                     name="card_holder_name"
                     onChange={handleChange}
                   />
-                  <button className='save-btn' type='submit'>Save</button>
+                  <button className='save-btn mt-5' type='submit'>Save</button>
                 </form>
 
               </div>
