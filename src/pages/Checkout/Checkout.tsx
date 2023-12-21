@@ -247,7 +247,7 @@ export default function Checkout() {
       <div className="container mx-auto">
         <div className="shadow-md py-5">
           <div className='row'>
-            <div className='col-lg-6 bg-black flex-none bg-black h-[90vh] border-2 border-green-500 rounded-lg'>
+            <div className='col-lg-6 bg-black flex-none bg-black h-[100%] border-2 border-green-500 rounded-lg'>
 
               <div className='p-3'>
                 <div className="flex justify-between border-b pb-8 pt-2">
@@ -269,7 +269,7 @@ export default function Checkout() {
                     <div className='col-6'>
 
                       <div className='flex gap-2 mb-5' onClick={() => {handleAddressClick(index);calculateDistance(value)}}>
-                        <div className={`flex items-center ${selectedAddressIndex === index ? 'address' : 'bg-black'}  p-2 w-[300px] h-[90px] border-2 border-green-500 rounded-lg cursor-pointer`}>
+                        <div className={`flex items-center ${selectedAddressIndex === index ? 'address' : 'bg-black'}  p-2 w-[300px] h-[100px] border-2 border-green-500 rounded-lg cursor-pointer`}>
                           <IoHomeOutline className={`${selectedAddressIndex === index ? 'text-white' : 'text-green-500'} text-xl cursor-pointer mr-2`} />
                           <span className='text-md text-white w-[200px]'>
                             {truncateText(value.address, 20)}
@@ -344,7 +344,7 @@ export default function Checkout() {
             <div className='col-lg-1'>
 
             </div>
-            <div className='col-lg-5 bg-black flex-none bg-black h-[40vh] border-2 border-green-500 rounded-lg'>
+            <div className='col-lg-5 bg-black flex-none bg-black h-[100%] pb-4 border-2 border-green-500 rounded-lg'>
 
               <div className='flex justify-between p-5'>
                 <h1 className="text-xl text-bold text-white ">Payment Method</h1>
