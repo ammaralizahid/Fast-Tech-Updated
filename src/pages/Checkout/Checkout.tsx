@@ -110,7 +110,6 @@ export default function Checkout() {
       onSuccess: (response: any) => {
         setConfig(response?.data?.branches)
         setOriginLatLong(response?.data?.restaurant_location_coverage)
-        console.log("lasjdfljasldfjlsadf",response?.data?.branches);
       },
     },
     restaurant_id

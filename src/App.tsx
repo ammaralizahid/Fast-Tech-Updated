@@ -15,8 +15,9 @@ import Checkout from './pages/Checkout/Checkout'
 import AddAddress from './pages/Address/AddAddress'
 import PaymentCards from './pages/PaymentCards/PaymentCards'
 import WishList from './pages/Wishlist/Wishlist'
-import OderHistry from './components/OderHistory/OderHistry'
-import Oderhosid from './components/OderHistryID/Oderhosid'
+import OrderHistory from './components/OderHistory/OrderHistory'
+import OrderDetails from './components/OderHistryID/OrderDetails'
+
 function App() {
   return (
     <QueryClientProvider client={new QueryClient()}>
@@ -46,10 +47,10 @@ function App() {
                 <PaymentCards />
               </AuthRoute>
               <AuthRoute exact path="/orders-history">
-                <OderHistry/>
+                <OrderHistory/>
               </AuthRoute>
-            <AuthRoute exact path="/orders-history-id">
-                <Oderhosid/>
+            <AuthRoute exact path="/orders-history/:id">
+                <OrderDetails/>
               </AuthRoute>
             {/* <NonAuthRoute exact path="/login">
                 <Login />

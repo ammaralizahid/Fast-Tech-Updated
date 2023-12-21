@@ -18,6 +18,7 @@ const endpoints = {
   getFavouriteProduct: '/customer/wish-list',
   removeFavouriteProduct: '/customer/wish-list/remove',
   setDefaultPaymentCard: '/customer/paymentmethod/setDefaultPaymentCard',
+  ordersList: '/customer/order/list',
 }
 
 
@@ -77,6 +78,23 @@ export const useGetAddress = (
     () =>
       fetchData(
         endpoints.getAddress,
+        {
+        },
+        {
+          authorization: `Bearer ${localStorage.getItem('access_token')}`
+        }
+      ),
+    options as any
+  ) as any
+}
+export const useOrdersList = (
+  options?: UseQueryOptions,
+) => {
+  return useQuery(
+    'ordersList',
+    () =>
+      fetchData(
+        endpoints.ordersList,
         {
         },
         {
