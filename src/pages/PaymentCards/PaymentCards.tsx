@@ -128,11 +128,11 @@ export default function PaymentCards() {
         <div className="container bg-black mx-auto">
           <div className="shadow-md py-5">
             <div className='row'>
-              <div className='col-lg-6 col-sm-12 bg-black mb-5 flex-none bg-black h-[100%] border-2 border-green-500 rounded-lg'>
+              <div className='col-lg-6 col-md-12 col-sm-12 bg-black mb-5 flex-none bg-black h-[100%] border-2 border-green-500 rounded-lg'>
                 <div className='p-5 row'>
                   {
                     paymentCards?.map((value: any, index) => (
-                      <div className='col-lg-6 col-sm-12 mb-3'>
+                      <div className='col-lg-6 col-md-12 col-sm-12 mb-3'>
                         <div className={`flex items-center bg-black p-2 w-[250px] h-[70px] border-2 border-green-500 rounded-lg cursor-pointer`} onClick={() => setDefaultPayment(value.payment_id)}>
                           <CiCreditCard1 className={`${value.default_card === "1" ? 'text-green-500 text-4xl' : 'text-green-500 text-xl'}  cursor-pointer`} />
                           <div className='ml-10'>

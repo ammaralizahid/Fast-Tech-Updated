@@ -260,7 +260,7 @@ export default function Checkout() {
       <div className="container mx-auto">
         <div className="shadow-md py-5">
           <div className='row'>
-            <div className='col-lg-6 bg-black flex-none bg-black h-[100%] border-2 border-green-500 rounded-lg'>
+            <div className='col-lg-6 bg-black flex-none bg-black h-[100%] border-2 border-green-500 rounded-lg mb-4'>
 
               <div className='p-3'>
                 <div className="flex justify-between border-b pb-8 pt-2">
@@ -331,7 +331,7 @@ export default function Checkout() {
                   }
                 </div>
               </div>
-              <div className='p-5 row overflow-x-auto'>
+              <div className='py-4 row overflow-x-auto'>
               <span className="text-xl text-bold text-white mb-2">Select Branch</span>
                     {
                       config?.map((value:any,index:any)=>(
@@ -361,7 +361,7 @@ export default function Checkout() {
 
               <div className='flex justify-between p-5'>
                 <h1 className="text-xl text-bold text-white ">Payment Method</h1>
-                <button className='coupon-btn p-2' onClick={() => history.push(`/edit-payment-cards`)}>Add Card +</button>
+                <button className='coupon-btn lg:p-2' onClick={() => history.push(`/edit-payment-cards`)}>Add Card +</button>
               </div>
               <div className='row'>
               {

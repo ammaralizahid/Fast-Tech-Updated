@@ -151,8 +151,7 @@ export default function Cart() {
 console.log("=========== config ===============", config.delivery_charge);
 
   return (
-    <div className='bg-black'>
-      <div className="container mx-auto">
+      <div className="container-fluid p-5 h-[100%] bg-black">
         <div className="shadow-md py-5">
           <div className='row'>
             <div className="col-lg-5 bg-black px-10 flex-none bg-black h-[100%] border-2 border-green-500 rounded-lg overflow-auto">
@@ -160,7 +159,7 @@ console.log("=========== config ===============", config.delivery_charge);
                 <h1 className="font-semibold text-2xl text-white">Shopping Cart</h1>
                 <h2 className="font-semibold text-2xl text-white">{cartItems?.cart?.length || 0} { cartItems?.cart?.length === 1 ? "Item" : "Items"} </h2>
               </div>
-              <div className="flex mt-10 mb-5">
+              <div className="flex mt-10 mb-5 flex-col max-h-[60vh] overflow-y-auto">
                 <h3 className="font-semibold text-gray-500 text-xs uppercase w-2/5 text-white">Product Details</h3>
                 <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center text-white">Quantity</h3>
                 <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center text-white">Price</h3>
@@ -215,7 +214,7 @@ console.log("=========== config ===============", config.delivery_charge);
             </div>
             <div className='col-lg-6 bg-black px-10 flex-none bg-black h-[100%] pb-3 border-2 border-green-500 rounded-lg'>
 
-              <div className='lg:p-3'>
+            <div className='lg:p-3 max-h-[80vh]'>
                 <span className='text-white text-2xl'>Recommended Sides</span>
                 <hr className='w-[100%] text-white mt-2 mb-4 border-2 border-gray-300' />
                 <div className='overflow-y-auto'>
@@ -302,6 +301,5 @@ console.log("=========== config ===============", config.delivery_charge);
           </div>
         </div>
       </div>
-    </div>
   )
 }
