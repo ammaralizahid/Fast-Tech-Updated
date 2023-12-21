@@ -15,6 +15,8 @@ import Checkout from './pages/Checkout/Checkout'
 import AddAddress from './pages/Address/AddAddress'
 import PaymentCards from './pages/PaymentCards/PaymentCards'
 import WishList from './pages/Wishlist/Wishlist'
+import OderHistry from './components/OderHistory/OderHistry'
+import Oderhosid from './components/OderHistryID/Oderhosid'
 function App() {
   return (
     <QueryClientProvider client={new QueryClient()}>
@@ -42,6 +44,12 @@ function App() {
               </AuthRoute>
             <AuthRoute exact path="/edit-payment-cards">
                 <PaymentCards />
+              </AuthRoute>
+              <AuthRoute exact path="/oders-histry">
+                <OderHistry/>
+              </AuthRoute>
+            <AuthRoute exact path="/oders-histry-id">
+                <Oderhosid/>
               </AuthRoute>
             {/* <NonAuthRoute exact path="/login">
                 <Login />
