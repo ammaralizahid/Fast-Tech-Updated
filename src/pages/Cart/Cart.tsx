@@ -155,7 +155,7 @@ console.log("=========== config ===============", config.delivery_charge);
       <div className="container mx-auto">
         <div className="shadow-md py-5">
           <div className='row'>
-            <div className="col-lg-5 bg-black px-10 flex-none bg-black h-[100vh] border-2 border-green-500 rounded-lg overflow-auto">
+            <div className="col-lg-5 bg-black px-10 flex-none bg-black h-[100%] border-2 border-green-500 rounded-lg overflow-auto">
               <div className="flex justify-between border-b pb-8 pt-2">
                 <h1 className="font-semibold text-2xl text-white">Shopping Cart</h1>
                 <h2 className="font-semibold text-2xl text-white">{cartItems?.cart?.length || 0} { cartItems?.cart?.length === 1 ? "Item" : "Items"} </h2>
@@ -213,7 +213,7 @@ console.log("=========== config ===============", config.delivery_charge);
             </div>
             <div className='col-lg-1'>
             </div>
-            <div className='col-lg-6 bg-black px-10 flex-none bg-black h-[100vh] border-2 border-green-500 rounded-lg'>
+            <div className='col-lg-6 bg-black px-10 flex-none bg-black h-[100%] pb-3 border-2 border-green-500 rounded-lg'>
 
               <div className='lg:p-3'>
                 <span className='text-white text-2xl'>Recommended Sides</span>

@@ -188,57 +188,70 @@ export default function Checkout() {
 
 
   const placeOrder = async () => {
+    console.log("========= paymentcards ========",paymentCards);
 
-    const cart = JSON.parse(localStorage.getItem('cart_items') as any )?.cart?.map((item: any) => {
-      return {
-        product_id: item?.id,
-        price: item?.price,
-        discount_amount: item?.discount,
+    try {
+
+      const cart = JSON.parse(localStorage.getItem('cart_items') as any)?.cart?.map((item: any) => {
+        return {
+          product_id: item?.id,
+          price: item?.price,
+          discount_amount: item?.discount,
+        }
+      });
+
+      const order_amount = JSON.parse(localStorage.getItem('totalCheckoutAmount') as any);
+
+      let currentDate = new Date();
+      let currentDay = currentDate.getDate();
+
+      if (!todaySlot) {
+        currentDate.setDate(currentDay + 1);
       }
-    })
 
-    const order_amount = JSON.parse(localStorage.getItem('totalCheckoutAmount') as any)
+      const year = currentDate.getFullYear();
+      const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+      const day = currentDate.getDate().toString().padStart(2, '0');
 
-    let currentDate = new Date();
-    let currentDay = currentDate.getDate();
+      const res = await signInMutation.mutateAsync({
+        order_amount,
+        delivery_address_id: addresses[selectedAddressIndex]?.id,
+        order_type: "delivery",
+        branch_id: selectedBranchId,
+        delivery_time: "now",
+        delivery_date: `${year}-${month}-${day}`,
+        distance: -1.0,
+        payment_method: 'stripe',
+        total_tax_amount: config?.service_fee_estimated_tax?.toFixed(2),
+        payment_id: paymentCards[0]?.payment_id,
+        cart,
+      });
 
-    if(!todaySlot) {
-      currentDate.setDate(currentDay + 1);
+      if (res?.data?.order_id) {
+        localStorage.removeItem('cart_items');
+        localStorage.removeItem('totalCheckoutAmount');
+
+        toast("Order Placed Successfully.");
+
+        setTimeout(() => {
+          history.push('/home');
+        }, 3000);
+      } else {
+        toast.error("Order Cannot Be Placed.");
+      }
+    } catch (error:any) {
+      if (error?.response?.data?.errors) {
+        // Display errors from the API response using toast.error
+        error.response.data.errors.forEach((err: any) => {
+          toast.error(`${err.message}`);
+        });
+      } else {
+        // Display a generic error message if there are no specific error details in the response
+        toast.error("An error occurred while placing the order.");
+      }
     }
+  };
 
-    const year = currentDate.getFullYear();
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-    const day = currentDate.getDate().toString().padStart(2, '0');
-
-    const res = await signInMutation.mutateAsync({
-      order_amount,
-      delivery_address_id: addresses[selectedAddressIndex]?.id,
-      order_type: "delivery",
-      branch_id: selectedBranchId,
-      delivery_time: "now",
-      delivery_date: `${year}-${month}-${day}`,
-      distance: -1.0,
-      payment_method: 'stripe',
-      total_tax_amount: config?.service_fee_estimated_tax?.toFixed(2),
-      payment_id: paymentCards[selectedCardIndex]?.payment_id,
-      cart
-    })
-
-    if(res?.data?.order_id) {
-      localStorage.removeItem('cart_items')
-      localStorage.removeItem('totalCheckoutAmount')
-
-      toast("Order Placed Successfully.")
-
-      setTimeout(() => {
-        history.push('/home')
-      }, 3000)
-    }else {
-      toast.error("Order Cannot Be Placed.")
-
-    }
-
-  }
 
   return (
     <>
@@ -375,7 +388,7 @@ export default function Checkout() {
 
 
               </div>
-              <button className='ml-2 save-btn p-2' onClick={placeOrder}>Confirm Checkout</button>
+              <button className='ml-2 save-btn p-2'  onClick={placeOrder}>Confirm Checkout</button>
 
             </div>
           </div>
