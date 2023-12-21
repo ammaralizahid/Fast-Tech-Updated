@@ -67,28 +67,28 @@ const Home = () => {
     return products?.map((product: any, index: number) => (
       <div className="col-lg-6 col-sm-12 col-xs-12 p-4 cursor-pointer" key={index}>
         <div className="h-full p-2 border rounded-xl flex items-center justify-center text-left sm:text-left">
-          <div className="flex-grow">
+          <div className="flex-grow ">
             <h2
               className="text-2xl text-left title-font font-medium text-white text-lg text-white-900"
               onClick={() => history.push(`/product/${product?.id}`)}
             >
               {product?.name}
             </h2>
-            <p className="mb-4">{product?.description}</p>
+            <p className="mb-2  h-[50px]">{product?.description}</p>
             <p className="mb-2" style={{ color: '#86bd57' }}>
               <span>$ {product?.price}</span>
             </p>
             <button
-              className='add-cart-btn-home'
+              className='add-cart-btn-home-lastsec'
               onClick={(e) => addProductToCart(product)}
-            >
+              >
               Add to Cart
             </button>
-          </div>
+              </div>
           <img
             onClick={() => history.push(`/product/${product?.id}`)}
             alt="team"
-            className="flex-shrink-0 rounded-lg w-1/3 h-[100%] object-cover object-center sm:mb-0 "
+            className="flex-shrink-0 rounded-lg w-1/3 h-52 object-cover object-center sm:mb-0 "
             src={`${config?.base_urls?.product_image_url}/${product?.image}`}
           />
         </div>

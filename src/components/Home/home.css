@@ -291,3 +291,14 @@
       max-width: 80px; /* Adjust this as needed */
     }
   }
+.add-cart-btn-home-lastsec{
+    width: 150px;
+    height: 35px;
+    z-index: 100;
+    border-radius: 10px;
+    font-size: 18px;
+    color: white;
+    background: rgb(2, 173, 2) !important;
+    border: 1px solid green;
+    cursor: pointer; /* Keep this line if you want to override other text colors */
+  }
