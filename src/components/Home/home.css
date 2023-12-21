@@ -7,12 +7,6 @@
     /* top: 0; */
     background-color: #161616;
 }
-/*
-@media max-width() {
-
-} */
-
-
 
 .h-line{
     width: 100%;
@@ -120,9 +114,6 @@
         background-size: cover;
         background-position: center;
 }
-
-
-
 .h-text-dev-btn{
     width: 15%;
     padding: 5px;
@@ -144,21 +135,6 @@
     /* border: 1px solid red; */
     font-size: 22px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .h-section2{
     width: 100%;
@@ -255,12 +231,6 @@
     line-height: 30px;
     color: white;
 }
-
-
-
-
-
-
 .h-main-sec3{
     width: 100%;
     /* height: 100vh; */
@@ -273,7 +243,18 @@
     background-color: #0D0D0D;
 }
 
-
+.add-cart-btn-home-lastsec{
+  width: 120px;
+  height: 35px;
+  z-index: 100;
+  border-radius: 10px;
+  font-size: 18px;
+  color: white;
+  background: rgb(2, 173, 2) !important;
+  border: 1px solid green;
+  /* margin-top: 5%; */
+  cursor: pointer; /* Keep this line if you want to override other text colors */
+}
 @media (max-width: 640px) {
     .list-reset {
       flex-wrap: wrap;
@@ -290,15 +271,17 @@
       text-overflow: ellipsis;
       max-width: 80px; /* Adjust this as needed */
     }
+    .add-cart-btn-home-lastsec{
+      width: 100px;
+      height: 35px;
+      z-index: 100;
+      border-radius: 10px;
+      font-size: 14px;
+      color: white;
+      /* margin-top: 5%; */
+      background: rgb(2, 173, 2) !important;
+      border: 1px solid green;
+      cursor: pointer; /* Keep this line if you want to override other text colors */
+    }
   }
-.add-cart-btn-home-lastsec{
-    width: 150px;
-    height: 35px;
-    z-index: 100;
-    border-radius: 10px;
-    font-size: 18px;
-    color: white;
-    background: rgb(2, 173, 2) !important;
-    border: 1px solid green;
-    cursor: pointer; /* Keep this line if you want to override other text colors */
-  }
+

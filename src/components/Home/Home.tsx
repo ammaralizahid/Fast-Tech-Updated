@@ -66,23 +66,25 @@ const Home = () => {
   const mapData = (products: any) => {
     return products?.map((product: any, index: number) => (
       <div className="col-lg-6 col-sm-12 col-xs-12 p-4 cursor-pointer" key={index}>
-        <div className="h-full p-2 border rounded-xl flex items-center justify-center text-left sm:text-left">
-          <div className="flex-grow" onClick={() => history.push(`/product/${product?.id}`)}>
+        <div className="h-full border rounded-xl flex items-center justify-center text-left sm:text-left">
+          <div className="flex-grow ml-2" onClick={() => history.push(`/product/${product?.id}`)}>
             <h2
-              className="text-2xl text-left title-font font-medium text-white text-lg text-white-900"
+              className="text-2xl text-left title-font font-bold text-green-500 text-lg text-white-900"
             >
               {product?.name}
             </h2>
-            <p className="mb-2  h-[50px]">{product?.description}</p>
-            <p className="mb-2" style={{ color: '#86bd57' }}>
-              <span>$ {product?.price}</span>
-            </p>
+            <p className="mb-5 w-[90%] h-[50px]">{product?.description}</p>
+            <div className='flex justify-between lg:mt-[17%] mr-5 items-center'>
             <button
               className='add-cart-btn-home-lastsec'
               onClick={(e) => addProductToCart(product)}
               >
               Add to Cart
             </button>
+            <p className="" style={{ color: '#86bd57' }}>
+              <span className='text-bold text-xl'>$ {product?.price}</span>
+            </p>
+              </div>
               </div>
           <img
             onClick={() => history.push(`/product/${product?.id}`)}
@@ -145,10 +147,10 @@ const Home = () => {
               <div className="lg:px-5 mx-auto">
                 {products?.map((item: any, index: number) => (
                   <div key={index} className="mb-10" data-category-id={item.id}>
-                    <h1 className="text-2xl font-medium title-font text-white  ml-4 mb-3">
+                    <h1 className="text-2xl font-medium title-font text-white  lg:ml-[4rem] mb-3">
                       {item?.name}
                     </h1>
-                    <div className="row">{mapData(item?.products)}</div>
+                    <div className="row lg:p-[3rem]">{mapData(item?.products)}</div>
                   </div>
                 ))}
               </div>
