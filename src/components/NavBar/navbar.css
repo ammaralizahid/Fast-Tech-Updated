@@ -497,6 +497,11 @@ li a {
 
 
 
+.eye-icon{
+  position: absolute;
+  /* top: 38%; */
+  right: 9%;
+}
 
 /* #navbar-sticky{
   width: 100%;

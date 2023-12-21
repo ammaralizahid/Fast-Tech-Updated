@@ -112,11 +112,16 @@ const Home = () => {
         <Navbar localSomething={localSomething} />
         <div>
           <div className="home-main-secton-1 lg:mt-[6.5%] xl:mt-[6.5%] mt-[23%]">
-            <div className="h-line h-[100%]">
-              <h1 className='h-line-h1' onClick={() => scrollToProducts(-1)}>
+            <div className="h-line p-1 h-[20px]">
+              <div className="container">
+              <div className="row">
+
+              <h1 className='h-line-h1 px-2' onClick={() => scrollToProducts(-1)}>
                 Join {restaurantData.name} Rewards to get free items when you order here →
               </h1>
+              </div>
             </div>
+              </div>
             <div className="sec3-bar">
               <>
                 <nav className="bg-gray-200 border-t-[1px] mb-8 border-b-[1px]  border-gray-500 bg-black py-3">

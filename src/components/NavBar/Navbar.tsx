@@ -15,6 +15,17 @@ import { toast } from 'react-toastify'
 import InputMask from 'react-input-mask';
 
 
+
+
+import { useForm } from "react-hook-form";
+// import "./styles.css";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+const eye = <FontAwesomeIcon icon={faEye} />;
+
+
+
 const Navbar = ({ localSomething }: any) => {
   const [isLogin, setIsLogin] = useState(true);
   const [showrestpassword, setShowrestpassword] = useState(false);
@@ -92,6 +103,21 @@ const Navbar = ({ localSomething }: any) => {
       history.push('/cart');
     }
   };
+
+
+
+
+
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
+  const { register, handleSubmit } = useForm();
+  const onSubmitt = (e: any) => {
+    console.log(e);
+  };
+
 
   return (
     <>
@@ -195,11 +221,21 @@ const Navbar = ({ localSomething }: any) => {
                             <input
                               className='canvas-phone-input'
                               placeholder='********'
-                              type="password"
+                              type={passwordShown ? "text" : "password"}
                               name="password"
                               onChange={handleChange}
+
                             />
+                              <i className='eye-icon text-lime-600 absolute mt-4' onClick={togglePasswordVisiblity}>{eye}</i>{" "}
+
+
+
                           </div >
+
+
+
+
+
                           <p className='canvas-phone-p1 ml-3'>Don't have an account yet?<button className='canvas-phone-span' onClick={() => changePath()}>Sign up</button></p>
                         </div>
                         <div className='mt-8'>
@@ -247,7 +283,7 @@ const Navbar = ({ localSomething }: any) => {
           </button>
         </div>
       </nav>
-      
+
     </>
   );
 };
