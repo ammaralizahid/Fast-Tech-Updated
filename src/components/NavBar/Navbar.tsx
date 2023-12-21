@@ -134,9 +134,12 @@ const Navbar = ({ localSomething }: any) => {
               <li>
                 <Link to={"/home"} className="block font-sans py-2 px-1 text-primeColor rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lime-500 md:p-0 md:dark:hover:text-lime-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Menu</Link>
               </li>
-              <li>
-                <a href="#" className="block font-sans py-2  text-primeColor rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lime-500 md:p-0 md:dark:hover:text-lime-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Orders</a>
-              </li>
+              {
+                token &&
+                <li>
+                  <Link to={"/orders-history"} className="block font-sans py-2  text-primeColor rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lime-500 md:p-0 md:dark:hover:text-lime-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Orders</Link>
+                </li>
+              }
               <li>
                 <a href="#" className="block font-sans py-2  text-primeColor rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lime-500 md:p-0 md:dark:hover:text-lime-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
               </li>
@@ -145,15 +148,6 @@ const Navbar = ({ localSomething }: any) => {
               <li>
                 <a href="#" className="block font-sans py-2  text-primeColor rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lime-500 md:p-0 md:dark:hover:text-lime-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
               </li>
-              {
-              
-              token &&
-              <Link to={"/oders-histry"}>
-              <li>
-                <a href="#" className="block font-sans py-2  text-primeColor rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lime-500 md:p-0 md:dark:hover:text-lime-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Oders</a>
-              </li>
-              </Link>
-              }
 
             </ul>
           </div>
@@ -235,7 +229,7 @@ const Navbar = ({ localSomething }: any) => {
                               onChange={handleChange}
 
                             />
-                              <i className='eye-icon text-lime-600 absolute mt-4' onClick={togglePasswordVisiblity}>{eye}</i>{" "}
+                            <i className='eye-icon text-lime-600 absolute mt-4' onClick={togglePasswordVisiblity}>{eye}</i>{" "}
 
 
 
@@ -293,9 +287,9 @@ const Navbar = ({ localSomething }: any) => {
             <span className="sr-only">Open main menu</span>
             <svg className="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-                </svg>
+            </svg>
           </button>
-              </div>
+        </div>
 
 
 

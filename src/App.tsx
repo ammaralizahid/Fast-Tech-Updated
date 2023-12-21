@@ -45,10 +45,10 @@ function App() {
             <AuthRoute exact path="/edit-payment-cards">
                 <PaymentCards />
               </AuthRoute>
-              <AuthRoute exact path="/oders-histry">
+              <AuthRoute exact path="/orders-history">
                 <OderHistry/>
               </AuthRoute>
-            <AuthRoute exact path="/oders-histry-id">
+            <AuthRoute exact path="/orders-history-id">
                 <Oderhosid/>
               </AuthRoute>
             {/* <NonAuthRoute exact path="/login">

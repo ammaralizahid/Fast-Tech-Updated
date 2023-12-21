@@ -13,13 +13,12 @@ const OderHistry = () => {
 
 
             <div className="oderss">
-                <div className="container   ">
+                <div className="container">
 
-                    {/* check for map */}
-                    <div className="row ml-4 mt-10">
-                        <div className="col-lg-6 mt-5">
-                            <div className=" oderHis-div w-11/12   rounded">
-                                <div className="flex">
+                    <div className="row ml-4">
+                        <div className="col-lg-6">
+                            <div className=" oderHis-div w-11/12 mt-[5rem] rounded-md bg-black pt-3 pb-3">
+                                <div className="flex lg:pl-7">
 
                                     <img src={hsecproduct2} className='img ml-2 mt-2 rounded w-24 h-24 border ' alt="" />
                                     <div className="data ">
@@ -29,9 +28,7 @@ const OderHistry = () => {
                                         <h1 className='mt-2 ml-3 text-xs text-lime-500'>Delivered</h1>
                                     </div>
                                 </div>
-                                {/* <h1 className='p-2 ml-2 text-white'>zuni</h1> */}
-                                {/* <button className='w-80 ml-5 border '>view detail</button> */}
-                                <Link to={"/oders-histry-id"}>
+                                <Link to={"/orders-history-id"}>
                                 <button
                                     className='oderHis-addcart-btn p-2 '
                                     >Details</button>
@@ -39,10 +36,8 @@ const OderHistry = () => {
                             </div>
                         </div>
 
-
-
-                        <div className="col-lg-6 mt-5">
-                            <div className=" oderHis-div w-11/12   rounded">
+                        {/* <div className="col-lg-6 mt-5">
+                            <div className=" oderHis-div w-11/12 rounded">
                                 <div className="flex">
 
                                     <img src={hpsecroduct3} className='img ml-2 mt-2 rounded w-24 h-24 border ' alt="" />
@@ -53,15 +48,11 @@ const OderHistry = () => {
                                         <h1 className='mt-2 ml-3 text-xs text-lime-500'>Delivered</h1>
                                     </div>
                                 </div>
-                                {/* <h1 className='p-2 ml-2 text-white'>zuni</h1> */}
-                                {/* <button className='w-80 ml-5 border '>view detail</button> */}
                                 <button
                                     className='oderHis-addcart-btn p-2 '
                                 >Details</button>
                             </div>
-                        </div>
-                        {/* chack End Here */}
-
+                        </div> */}
 
                     </div>
                 </div>
