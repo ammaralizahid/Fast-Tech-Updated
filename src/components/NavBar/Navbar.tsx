@@ -15,6 +15,17 @@ import { toast } from 'react-toastify'
 import InputMask from 'react-input-mask';
 
 
+
+
+import { useForm } from "react-hook-form";
+// import "./styles.css";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+const eye = <FontAwesomeIcon icon={faEye} />;
+
+
+
 const Navbar = ({ localSomething }: any) => {
   const [isLogin, setIsLogin] = useState(true);
   const [showrestpassword, setShowrestpassword] = useState(false);
@@ -94,11 +105,26 @@ const Navbar = ({ localSomething }: any) => {
     }
   };
 
+
+
+
+
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
+  const { register, handleSubmit } = useForm();
+  const onSubmitt = (e: any) => {
+    console.log(e);
+  };
+
+
   return (
     <>
       <Restpassword />
       <nav className="bg-black dark:bg-gray-900 fixed w-full z-20 lg-h-[23%] top-0 border-b border-gray-200 dark:border-gray-600">
-        <div className="container mx-auto flex items-center justify-between p-4">
+        <div className="container mx-auto flex items-center justify-around p-4">
           <Link to="/home" className="flex items-center">
             <img src={navlogo} className="h-16" alt="Flowbite Logo" />
           </Link>
@@ -109,10 +135,10 @@ const Navbar = ({ localSomething }: any) => {
                 <Link to={"/home"} className="block font-sans py-2 px-1 text-primeColor rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lime-500 md:p-0 md:dark:hover:text-lime-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Menu</Link>
               </li>
               <li>
-                <a href="#" className="block font-sans py-2 px-3 text-primeColor rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lime-500 md:p-0 md:dark:hover:text-lime-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Orders</a>
+                <a href="#" className="block font-sans py-2  text-primeColor rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lime-500 md:p-0 md:dark:hover:text-lime-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Orders</a>
               </li>
               <li>
-                <a href="#" className="block font-sans py-2 px-3 text-primeColor rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lime-500 md:p-0 md:dark:hover:text-lime-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+                <a href="#" className="block font-sans py-2  text-primeColor rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-lime-500 md:p-0 md:dark:hover:text-lime-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
               </li>
               <li>
               </li>
@@ -133,9 +159,7 @@ const Navbar = ({ localSomething }: any) => {
                 </div>
                 <FaHeart className='text-red-500 text-4xl cursor-pointer' onClick={() => history.push('/wishlist')} />
                 <CgProfile
-                  id="avatarButton"
-                  data-dropdown-toggle="userDropdown"
-                  data-dropdown-placement="bottom-start"
+                  id="avatarButton" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start"
                   className="w-10 h-10 rounded-full cursor-pointer text-white"
                 />
                 <div id="userDropdown" className="hidden bg-black divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
@@ -154,62 +178,72 @@ const Navbar = ({ localSomething }: any) => {
                 </div>
               </>
             ) : (
-                <nav className="navbar border-radius-1 cursor-pointer navbar-dark text-center rounded-md bg-lime-500 sidebar-nav login-btn">
-                  <div className="container-fluid">
-                    <h1
-                      className="navbar-toggler text-white font-semibold"
-                      data-bs-toggle="offcanvas"
-                      data-bs-target="#offcanvasDarkNavbar"
-                      aria-controls="offcanvasDarkNavbar"
-                      aria-label="Toggle navigation"
-                    >Login
-                    </h1>
-                    <div
-                      className="offcanvas offcanvas-end text-bg-#0D0D0D sidebar "
-                      tabIndex={-1}
-                      id="offcanvasDarkNavbar"
-                      aria-labelledby="offcanvasDarkNavbarLabel"
-                    >
-                      <div className="offcanvas-header bg-black text-white ">
-                        <button
-                          type="button"
-                          className="btn-close btn-close-green bg-White text-white border-10 z-50  text-4xl font-bold "
-                          data-bs-dismiss="offcanvas"
-                          aria-label="Close"
-                        >x</button>
-                      </div>
-                      {isLogin ? (
-                        <form onSubmit={onSubmit} className='bg-black h-[100%] p-3'>
-                          <div className="canvas-h1-div">
-                            <h1 className="canvas-h1">Join {restaurantData.name} Rewards, Win $500!</h1>
-                          </div>
-                          <div className="canvas-phone-div">
-                            <h1 className='canvas-phone-h1'>Email or Phone</h1>
-                            <InputMask
-                              className='canvas-phone-input'
-                              mask="+1(999) 999-9999"
-                              placeholder='+1 (555) 555-5555'
-                              type="text"
-                              name="email_or_phone"
-                              onChange={handleChange}
-                            />
-                              <div className="mt-3 mb-5">
+              <nav className="navbar border-radius-1 cursor-pointer navbar-dark text-center rounded-md bg-lime-500 sidebar-nav login-btn">
+                <div className="container-fluid">
+                  <h1
+                    className="navbar-toggler text-white font-semibold"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasDarkNavbar"
+                    aria-controls="offcanvasDarkNavbar"
+                    aria-label="Toggle navigation"
+                  >Login
+                  </h1>
+                  <div
+                    className="offcanvas offcanvas-end text-bg-#0D0D0D sidebar "
+                    tabIndex={-1}
+                    id="offcanvasDarkNavbar"
+                    aria-labelledby="offcanvasDarkNavbarLabel"
+                  >
+                    <div className="offcanvas-header bg-black text-white ">
+                      <button
+                        type="button"
+                        className="btn-close btn-close-green bg-White text-white border-10 z-50  text-4xl font-bold "
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"
+                      >x</button>
+                    </div>
+                    {isLogin ? (
+                      <form onSubmit={onSubmit} className='bg-black h-[100%] p-3'>
+                        <div className="canvas-h1-div">
+                          <h1 className="canvas-h1">Join {restaurantData.name} Rewards, Win $500!</h1>
+                        </div>
+                        <div className="canvas-phone-div">
+                          <h1 className='canvas-phone-h1'>Email or Phone</h1>
+                          <InputMask
+                            className='canvas-phone-input'
+                            mask="+1(999) 999-9999"
+                            placeholder='+1 (555) 555-5555'
+                            type="text"
+                            name="email_or_phone"
+                            onChange={handleChange}
+                          />
+                          <div className="mt-3 mb-5">
                             <h1 className='canvas-phone-h12'>Password</h1>
                             <input
                               className='canvas-phone-input'
                               placeholder='********'
-                              type="password"
+                              type={passwordShown ? "text" : "password"}
                               name="password"
                               onChange={handleChange}
-                            />
-                          </div >
-                            <p className='canvas-phone-p1 ml-3'>Don't have an account yet?<button className='canvas-phone-span' onClick={() => changePath()}>Sign up</button></p>
-                          </div>
-                          <div className='mt-8'>
-                            <button className='canvas-footer-btn' type='submit'>Continue</button>
-                          </div>
 
-                          {/* <div className="w-[100%] bg-black opacity-80">
+                            />
+                              <i className='eye-icon text-lime-600 absolute mt-4' onClick={togglePasswordVisiblity}>{eye}</i>{" "}
+
+
+
+                          </div >
+
+
+
+
+
+                          <p className='canvas-phone-p1 ml-3'>Don't have an account yet?<button className='canvas-phone-span' onClick={() => changePath()}>Sign up</button></p>
+                        </div>
+                        <div className='mt-8'>
+                          <button className='canvas-footer-btn' type='submit'>Continue</button>
+                        </div>
+
+                        {/* <div className="w-[100%] bg-black opacity-80">
                             <div className="container">
                               <div className="row" >
                                 <div className="col-lg-4 canvas-footer-h1">
@@ -226,20 +260,20 @@ const Navbar = ({ localSomething }: any) => {
                             <button className='canvas-footer-btn' type='submit'>Continue</button>
                             <h1 className='canvas-footer-heading'>By signing up, you agree to receive email and SMS marketing communications from {restaurantData.name} and our technology partner Owner.com and consent to our Platform Terms and Privacy Policy.</h1>
                           </div> */}
-                        </form>
-                      ) : (
-                        <Singup changePath={changePath} />
-                      )}
-                    </div>
+                      </form>
+                    ) : (
+                      <Singup changePath={changePath} />
+                    )}
                   </div>
-                </nav>
+                </div>
+              </nav>
             )}
           </div>
 
           <button
             data-collapse-toggle="navbar-sticky"
             type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            className="inline-flex items-center p-2  w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-sticky"
             aria-expanded="false"
           >
@@ -250,6 +284,7 @@ const Navbar = ({ localSomething }: any) => {
           </button>
         </div>
       </nav>
+
     </>
   );
 };
