@@ -148,6 +148,7 @@ export default function Cart() {
 
     setCart(updatedCart)
   }, [])
+console.log("=========== config ===============", config.delivery_charge);
 
   return (
     <div className='bg-black'>

@@ -65,8 +65,10 @@ export default function Checkout() {
         const response = await GetPaymentCard.mutateAsync();
 
         if (response.status === 200) {
-          setPaymentCards(response?.data);
+          // Filter payment cards with default_card === "1"
+          const defaultPaymentCards = response.data.filter((card:any) => card.default_card === "1");
 
+          setPaymentCards(defaultPaymentCards);
         }
       } catch (error:any) {
         setLoading(false);
@@ -225,7 +227,7 @@ export default function Checkout() {
     if(res?.data?.order_id) {
       localStorage.removeItem('cart_items')
       localStorage.removeItem('totalCheckoutAmount')
-  
+
       toast("Order Placed Successfully.")
 
       setTimeout(() => {
@@ -284,13 +286,13 @@ export default function Checkout() {
 
                 <span className='text-bold text-white text-xl'>Preference Time</span>
                 <div className='mt-3'>
-                  <button 
-                    className={`${todaySlot ? 'pref-focus-btn' : 'pref-btn'} p-2`} 
+                  <button
+                    className={`${todaySlot ? 'pref-focus-btn' : 'pref-btn'} p-2`}
                     onClick={() => setTodaySlot(true)}
                   >
                     Today
                   </button>
-                  <button 
+                  <button
                     className={`${!todaySlot ? 'pref-focus-btn' : 'pref-btn'} p-2`}
                     onClick={() => setTodaySlot(false)}
                   >
@@ -321,7 +323,7 @@ export default function Checkout() {
                     {
                       config?.map((value:any,index:any)=>(
                         <div className='col-6'>
-                <div 
+                <div
                   className={`flex items-center bg-black p-2 w-[300px] h-[100px] border-2 border-green-500 rounded-lg cursor-pointer`}
                   onClick={() => handleBranchClick(value,index)}
                 >
@@ -353,7 +355,7 @@ export default function Checkout() {
                 paymentCards?.map((value:any, index: number)=>(
                   <div className='col-6 mb-4'>
                     <div className='col-6'>
-                      <div 
+                      <div
                         className={`flex items-center bg-black p-2 w-[250px] h-[70px] border-2 border-green-500 rounded-lg cursor-pointer`}
                         onClick={() => handleCardClick(index)}
                       >

@@ -17,6 +17,7 @@ const endpoints = {
   addFavouriteProduct: '/customer/wish-list/add',
   getFavouriteProduct: '/customer/wish-list',
   removeFavouriteProduct: '/customer/wish-list/remove',
+  setDefaultPaymentCard: '/customer/paymentmethod/setDefaultPaymentCard',
 }
 
 
@@ -47,6 +48,14 @@ export const useGetPaymentCard = (options?: UseMutationOptions) => {
 export const useDeletePaymentCard = (options?: UseMutationOptions) => {
   return useMutation(
     (data: any) => mutateData({ url: endpoints.deletePaymentCard, data , headers: {
+      authorization: `Bearer ${localStorage.getItem('access_token')}`
+    }}),
+    options
+  ) as any
+}
+export const useSetDefaultPaymentCard = (options?: UseMutationOptions) => {
+  return useMutation(
+    (data: any) => mutateData({ url: endpoints.setDefaultPaymentCard, data , headers: {
       authorization: `Bearer ${localStorage.getItem('access_token')}`
     }}),
     options
