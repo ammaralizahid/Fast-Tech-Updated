@@ -42,7 +42,7 @@ const Navbar = ({ localSomething }: any) => {
     // Remove spaces, '-', and '()' for the input with name 'email_or_phone'
     const sanitizedValue = name === 'email_or_phone' ? value.replace(/[\s()-]/g, '') : value;
 
-    setFormData((prevData) => ({
+    setFormData((prevData: any) => ({
       ...prevData,
       [name]: sanitizedValue,
     }));
@@ -61,6 +61,7 @@ const Navbar = ({ localSomething }: any) => {
       if (response.status === 200) {
         toast.success('Logged In Successfully.');
         login(response);
+        window.location.reload()
       } else {
         setLoading(false);
       }
