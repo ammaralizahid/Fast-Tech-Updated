@@ -11,7 +11,7 @@ const AuthRoute: React.FC<PrivateRouteProps> = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={() =>
-        isAuthenticated ? (children as any) : <Redirect to="/login" />
+        isAuthenticated ? (children as any) : <Redirect to="/home" />
       }
     />
   )
