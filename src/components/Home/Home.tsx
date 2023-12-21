@@ -67,10 +67,9 @@ const Home = () => {
     return products?.map((product: any, index: number) => (
       <div className="col-lg-6 col-sm-12 col-xs-12 p-4 cursor-pointer" key={index}>
         <div className="h-full p-2 border rounded-xl flex items-center justify-center text-left sm:text-left">
-          <div className="flex-grow ">
+          <div className="flex-grow" onClick={() => history.push(`/product/${product?.id}`)}>
             <h2
               className="text-2xl text-left title-font font-medium text-white text-lg text-white-900"
-              onClick={() => history.push(`/product/${product?.id}`)}
             >
               {product?.name}
             </h2>

@@ -4,10 +4,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getAllPopularProducts } from '@/network/products/products';
 import { restaurantData } from '@/mocks/common';
 import { useConfig } from '@/network/Common/common';
+import { useHistory } from 'react-router-dom';
 
 const ProductSlider = ({ addProductToCart }: any) => {
   const [popularProducts, setPopularProducts] = useState<any>([]);
   const [config, setConfig] = useState<any>({});
+  const history = useHistory();
 
   getAllPopularProducts(
     {
@@ -46,7 +48,8 @@ const ProductSlider = ({ addProductToCart }: any) => {
           <div className="carousel-item active">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {popularProducts?.map((item: any, index: number) => (
-                <div key={index} className="border border-success border-green-600 text-white rounded-xl">
+                <div key={index} className="border cursor-pointer border-success border-green-600 text-white rounded-xl" onClick={() => history.push(`/product/${item?.id}`)}
+                >
                   <div className="overflow-hidden h-40">
                     <img
                       src={`${config?.base_urls?.product_image_url}/${item?.image}`}
