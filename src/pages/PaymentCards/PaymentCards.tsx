@@ -125,7 +125,7 @@ export default function PaymentCards() {
       <ToastContainer />
 
       <div className='bg-black'>
-        <div className="container-fluid bg-black mx-auto">
+        <div className="container bg-black mx-auto">
           <div className="shadow-md py-5">
             <div className='row'>
               <div className='col-lg-6 col-sm-12 bg-black mb-5 flex-none bg-black h-[100%] border-2 border-green-500 rounded-lg'>
