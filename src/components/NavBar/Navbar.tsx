@@ -199,7 +199,7 @@ const Navbar = ({ localSomething }: any) => {
                               placeholder='********'
                               type="password"
                               name="password"
-                              onChange={handleChange} 
+                              onChange={handleChange}
                             />
                           </div >
                             <p className='canvas-phone-p1 ml-3'>Don't have an account yet?<button className='canvas-phone-span' onClick={() => changePath()}>Sign up</button></p>
