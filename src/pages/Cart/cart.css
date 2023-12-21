@@ -152,4 +152,26 @@
     cursor: pointer;
     margin-left: 1rem;
   }
+  .coupon-btn{
+    width: 50%;
+    height: 3rem;
+    border-radius: 10px;
+    font-size: 14px;
+    color: white;
+    background-color: rgb(2, 173, 2);
+    border: 1px solid green;
+    cursor: pointer;
+    /* margin-left: 1rem; */
+  }
+  .coupon-btn:hover{
+    width: 30%;
+    height: 3rem;
+    border-radius: 10px;
+    font-size: 14px;
+    color: white;
+    background-color: rgb(2, 173, 2);
+    border: 1px solid green;
+    cursor: pointer;
+    /* margin-left: 1rem; */
+  }
   }

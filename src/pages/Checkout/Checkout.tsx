@@ -65,8 +65,10 @@ export default function Checkout() {
         const response = await GetPaymentCard.mutateAsync();
 
         if (response.status === 200) {
-          setPaymentCards(response?.data);
+          // Filter payment cards with default_card === "1"
+          const defaultPaymentCards = response.data.filter((card:any) => card.default_card === "1");
 
+          setPaymentCards(defaultPaymentCards);
         }
       } catch (error:any) {
         setLoading(false);
@@ -186,57 +188,70 @@ export default function Checkout() {
 
 
   const placeOrder = async () => {
+    console.log("========= paymentcards ========",paymentCards);
 
-    const cart = JSON.parse(localStorage.getItem('cart_items') as any )?.cart?.map((item: any) => {
-      return {
-        product_id: item?.id,
-        price: item?.price,
-        discount_amount: item?.discount,
+    try {
+
+      const cart = JSON.parse(localStorage.getItem('cart_items') as any)?.cart?.map((item: any) => {
+        return {
+          product_id: item?.id,
+          price: item?.price,
+          discount_amount: item?.discount,
+        }
+      });
+
+      const order_amount = JSON.parse(localStorage.getItem('totalCheckoutAmount') as any);
+
+      let currentDate = new Date();
+      let currentDay = currentDate.getDate();
+
+      if (!todaySlot) {
+        currentDate.setDate(currentDay + 1);
       }
-    })
 
-    const order_amount = JSON.parse(localStorage.getItem('totalCheckoutAmount') as any)
+      const year = currentDate.getFullYear();
+      const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+      const day = currentDate.getDate().toString().padStart(2, '0');
 
-    let currentDate = new Date();
-    let currentDay = currentDate.getDate();
+      const res = await signInMutation.mutateAsync({
+        order_amount,
+        delivery_address_id: addresses[selectedAddressIndex]?.id,
+        order_type: "delivery",
+        branch_id: selectedBranchId,
+        delivery_time: "now",
+        delivery_date: `${year}-${month}-${day}`,
+        distance: -1.0,
+        payment_method: 'stripe',
+        total_tax_amount: config?.service_fee_estimated_tax?.toFixed(2),
+        payment_id: paymentCards[0]?.payment_id,
+        cart,
+      });
 
-    if(!todaySlot) {
-      currentDate.setDate(currentDay + 1);
+      if (res?.data?.order_id) {
+        localStorage.removeItem('cart_items');
+        localStorage.removeItem('totalCheckoutAmount');
+
+        toast("Order Placed Successfully.");
+
+        setTimeout(() => {
+          history.push('/home');
+        }, 3000);
+      } else {
+        toast.error("Order Cannot Be Placed.");
+      }
+    } catch (error:any) {
+      if (error?.response?.data?.errors) {
+        // Display errors from the API response using toast.error
+        error.response.data.errors.forEach((err: any) => {
+          toast.error(`${err.message}`);
+        });
+      } else {
+        // Display a generic error message if there are no specific error details in the response
+        toast.error("An error occurred while placing the order.");
+      }
     }
+  };
 
-    const year = currentDate.getFullYear();
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-    const day = currentDate.getDate().toString().padStart(2, '0');
-
-    const res = await signInMutation.mutateAsync({
-      order_amount,
-      delivery_address_id: addresses[selectedAddressIndex]?.id,
-      order_type: "delivery",
-      branch_id: selectedBranchId,
-      delivery_time: "now",
-      delivery_date: `${year}-${month}-${day}`,
-      distance: -1.0,
-      payment_method: 'stripe',
-      total_tax_amount: config?.service_fee_estimated_tax?.toFixed(2),
-      payment_id: paymentCards[selectedCardIndex]?.payment_id,
-      cart
-    })
-
-    if(res?.data?.order_id) {
-      localStorage.removeItem('cart_items')
-      localStorage.removeItem('totalCheckoutAmount')
-  
-      toast("Order Placed Successfully.")
-
-      setTimeout(() => {
-        history.push('/home')
-      }, 3000)
-    }else {
-      toast.error("Order Cannot Be Placed.")
-
-    }
-
-  }
 
   return (
     <>
@@ -245,7 +260,7 @@ export default function Checkout() {
       <div className="container mx-auto">
         <div className="shadow-md py-5">
           <div className='row'>
-            <div className='col-lg-6 bg-black flex-none bg-black h-[90vh] border-2 border-green-500 rounded-lg'>
+            <div className='col-lg-6 bg-black flex-none bg-black h-[100%] border-2 border-green-500 rounded-lg mb-4'>
 
               <div className='p-3'>
                 <div className="flex justify-between border-b pb-8 pt-2">
@@ -267,7 +282,7 @@ export default function Checkout() {
                     <div className='col-6'>
 
                       <div className='flex gap-2 mb-5' onClick={() => {handleAddressClick(index);calculateDistance(value)}}>
-                        <div className={`flex items-center ${selectedAddressIndex === index ? 'address' : 'bg-black'}  p-2 w-[300px] h-[90px] border-2 border-green-500 rounded-lg cursor-pointer`}>
+                        <div className={`flex items-center ${selectedAddressIndex === index ? 'address' : 'bg-black'}  p-2 w-[300px] h-[100px] border-2 border-green-500 rounded-lg cursor-pointer`}>
                           <IoHomeOutline className={`${selectedAddressIndex === index ? 'text-white' : 'text-green-500'} text-xl cursor-pointer mr-2`} />
                           <span className='text-md text-white w-[200px]'>
                             {truncateText(value.address, 20)}
@@ -284,13 +299,13 @@ export default function Checkout() {
 
                 <span className='text-bold text-white text-xl'>Preference Time</span>
                 <div className='mt-3'>
-                  <button 
-                    className={`${todaySlot ? 'pref-focus-btn' : 'pref-btn'} p-2`} 
+                  <button
+                    className={`${todaySlot ? 'pref-focus-btn' : 'pref-btn'} p-2`}
                     onClick={() => setTodaySlot(true)}
                   >
                     Today
                   </button>
-                  <button 
+                  <button
                     className={`${!todaySlot ? 'pref-focus-btn' : 'pref-btn'} p-2`}
                     onClick={() => setTodaySlot(false)}
                   >
@@ -316,12 +331,12 @@ export default function Checkout() {
                   }
                 </div>
               </div>
-              <div className='p-5 row overflow-x-auto'>
+              <div className='py-4 row overflow-x-auto'>
               <span className="text-xl text-bold text-white mb-2">Select Branch</span>
                     {
                       config?.map((value:any,index:any)=>(
                         <div className='col-6'>
-                <div 
+                <div
                   className={`flex items-center bg-black p-2 w-[300px] h-[100px] border-2 border-green-500 rounded-lg cursor-pointer`}
                   onClick={() => handleBranchClick(value,index)}
                 >
@@ -342,18 +357,18 @@ export default function Checkout() {
             <div className='col-lg-1'>
 
             </div>
-            <div className='col-lg-5 bg-black flex-none bg-black h-[40vh] border-2 border-green-500 rounded-lg'>
+            <div className='col-lg-5 bg-black flex-none bg-black h-[100%] pb-4 border-2 border-green-500 rounded-lg'>
 
               <div className='flex justify-between p-5'>
                 <h1 className="text-xl text-bold text-white ">Payment Method</h1>
-                <button className='coupon-btn p-2' onClick={() => history.push(`/edit-payment-cards`)}>Add Card +</button>
+                <button className='coupon-btn lg:p-2' onClick={() => history.push(`/edit-payment-cards`)}>Add Card +</button>
               </div>
               <div className='row'>
               {
                 paymentCards?.map((value:any, index: number)=>(
                   <div className='col-6 mb-4'>
                     <div className='col-6'>
-                      <div 
+                      <div
                         className={`flex items-center bg-black p-2 w-[250px] h-[70px] border-2 border-green-500 rounded-lg cursor-pointer`}
                         onClick={() => handleCardClick(index)}
                       >
@@ -373,7 +388,7 @@ export default function Checkout() {
 
 
               </div>
-              <button className='ml-2 save-btn p-2' onClick={placeOrder}>Confirm Checkout</button>
+              <button className='ml-2 save-btn p-2'  onClick={placeOrder}>Confirm Checkout</button>
 
             </div>
           </div>
