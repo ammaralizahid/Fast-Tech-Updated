@@ -119,7 +119,7 @@ const Home = () => {
             </div>
             <div className="sec3-bar">
               <>
-                <nav className="bg-gray-200 border-t-[1px] mb-20 border-b-[1px]  border-gray-500 bg-black py-3">
+                <nav className="bg-gray-200 border-t-[1px] mb-8 border-b-[1px]  border-gray-500 bg-black py-3">
                   <div className=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <ol className=" items-center justify-between list-reset flex text-gray-700">
                       {categories?.map((item: any, index: number) => (

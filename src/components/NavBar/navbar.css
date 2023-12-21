@@ -494,3 +494,38 @@ li a {
   cursor: pointer;
   color: green;
 }
+
+
+
+
+/* #navbar-sticky{
+  width: 100%;
+  height: 100vh;
+}
+
+
+
+@media (max-Width:1780px) {
+  #navbar-sticky{
+    width: auto;
+    height: 80px;
+  }
+    
+}
+@media (max-Width: 640px) {
+  #navbar-sticky{
+    width: 100%;
+    height: 80vh;
+    margin-top: 40px;
+  }
+  .right-side-all-icons{
+    margin-left: -100px;
+    
+    margin-top: -620px;
+  }
+  .nav-3line-icon{
+    position: absolute;
+    margin-top: -500px;
+  }
+    
+} */
