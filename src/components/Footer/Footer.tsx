@@ -59,8 +59,8 @@ const Footer = () => {
                         </div>
                         {
                             data?.map((items: any, index: number) => (
-                                
-                                <div key={index} className="footer-section border">
+
+                                <div key={index} className="footer-section ">
                                     <h3>Contact</h3>
                                     <p>Email: {items.email}</p>
                                     <p>Phone: {items.phone}</p>
