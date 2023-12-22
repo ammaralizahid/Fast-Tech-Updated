@@ -109,15 +109,17 @@ const Home = () => {
   return (
     <>
       <ToastContainer />
-      <div>
+      <div className='flex flex-column'>
+        <div >
         <Navbar localSomething={localSomething} />
-        <div>
-          <div className="home-main-secton-1 lg:mt-[6.5%] xl:mt-[6.5%] mt-[23%]">
-            <div className="h-line p-1 h-[20px]">
+        </div>
+        <div className=''>
+          <div className="pt-[114px] bg-[#161616]">
+            <div className="h-line p-1 h-[30px] overflow-hidden">
               <div className="container">
               <div className="row">
 
-              <h1 className='h-line-h1 px-2' onClick={() => scrollToProducts(-1)}>
+              <h1 className='h-line-h1 px-2 sm:text-[13px]' onClick={() => scrollToProducts(-1)}>
                 Join {restaurantData.name} Rewards to get free items when you order here →
               </h1>
               </div>
@@ -126,17 +128,20 @@ const Home = () => {
             <div className="sec3-bar">
               <>
                 <nav className="bg-gray-200 border-t-[1px] mb-8 border-b-[1px]  border-gray-500 bg-black py-3">
-                  <div className=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <ol className=" items-center justify-between list-reset flex text-gray-700">
-                      {categories?.map((item: any, index: number) => (
-                        <li key={index}>
-                          <a href="#" className="hover:text-lime-500" onClick={() => scrollToProducts(item.id)}>
-                            {item?.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div className="flex overflow-x-auto">
+    <ol className="items-center   flex text-gray-700">
+      {categories?.map((item: any, index: number) => (
+        <li key={index} className="w-[136px]">
+          <a href="#" className="hover:text-lime-500" onClick={() => scrollToProducts(item.id)}>
+            {item?.name}
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+</div>
+
                 </nav>
               </>
             </div>

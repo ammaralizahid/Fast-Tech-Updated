@@ -13,7 +13,7 @@
     height: 50px;
     background-color: #07CB07;
     text-align: center;
-    margin-top: 7.1%;
+    /* margin-top: 7.1%; */
     /* color: white; */
 }
 @media (max-width:600px) {
@@ -22,7 +22,7 @@
         height: 60px;
         background-color: #07CB07;
         text-align: center;
-        margin-top: 7.1%;
+        /* margin-top: 7.1%; */
         /* color: white; */
     }
 }
@@ -278,4 +278,41 @@
       cursor: pointer; /* Keep this line if you want to override other text colors */
     }
   }
+.add-cart-btn-home-lastsec{
+    width: 150px;
+    height: 35px;
+    z-index: 100;
+    border-radius: 10px;
+    font-size: 18px;
+    color: white;
+    background: rgb(2, 173, 2) !important;
+    border: 1px solid green;
+    cursor: pointer; /* Keep this line if you want to override other text colors */
+  }
+/* width */
+::-webkit-scrollbar {
+  width: 1px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  width: 5px;
+  background: #000000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0c0c0c;
+
+  width: 5px;
+
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0c0c0c;
+
+
+
+}
