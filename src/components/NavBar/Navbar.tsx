@@ -120,7 +120,11 @@ const Navbar = ({ localSomething }: any) => {
       const onSubmitt = (e: any) => {
         console.log(e);
       };
+      const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+      const handleProfileClick = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+      };
 
     return (
       <div className='bg-black dark:bg-gray-900 fixed w-full z-[1000] lg-h-[23%] top-0 border-b border-gray-200 dark:border-gray-600'>
@@ -140,7 +144,9 @@ const Navbar = ({ localSomething }: any) => {
         </div>
         {/* Menu icon */}
         <div className='flex items-center '> {/* Updated this line */}
-          <div className='flex mr-1'>
+       {token?(<>
+
+        <div className='flex mr-1'>
             <div>
               <FaShoppingCart className='text-white text-4xl cursor-pointer' onClick={goToCheckout} />
             </div>
@@ -148,9 +154,123 @@ const Navbar = ({ localSomething }: any) => {
           </div>
           <FaHeart className='text-red-500 text-4xl cursor-pointer mr-1' onClick={() => history.push('/wishlist')} />
           <CgProfile
-            id="avatarButton" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start"
-            className="w-10 h-10 rounded-full cursor-pointer text-white"
-          />
+        id="avatarButton"
+        data-dropdown-toggle="userDropdown"
+        data-dropdown-placement="bottom-start"
+        className="w-10 h-10 rounded-full cursor-pointer text-white"
+        onClick={handleProfileClick}
+      />
+
+      {isDropdownOpen && (
+        <div id="userDropdown"  className="bg-white divide-y absolute -ml-[77px] mt-[210px]  divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+          <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div>Bonnie Green</div>
+            <div >name@flowbite.com</div>
+            <div onClick={openrestpass}>Reset Password</div>
+          </div>
+
+          <div className="py-1">
+            <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onClick={logOut}>Sign out</a>
+          </div>
+        </div>
+      )}
+
+
+       </>):(<>
+
+        <nav className="navbar border-radius-1 cursor-pointer navbar-dark text-center rounded-md bg-lime-500 sidebar-nav login-btn">
+                <div className="container-fluid">
+                  <h1
+                    className="navbar-toggler text-white font-semibold"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasDarkNavbar"
+                    aria-controls="offcanvasDarkNavbar"
+                    aria-label="Toggle navigation"
+                  >Login
+                  </h1>
+                  <div
+                    className="offcanvas offcanvas-end text-bg-#0D0D0D sidebar "
+                    tabIndex={-1}
+                    id="offcanvasDarkNavbar"
+                    aria-labelledby="offcanvasDarkNavbarLabel"
+                  >
+                    <div className="offcanvas-header bg-black text-white ">
+                      <button
+                        type="button"
+                        className="btn-close btn-close-green bg-White text-white border-10 z-50  text-4xl font-bold "
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"
+                      >x</button>
+                    </div>
+                    {isLogin ? (
+                      <form onSubmit={onSubmit} className='bg-black h-[100%] p-3'>
+                        <div className="canvas-h1-div">
+                          <h1 className="canvas-h1">Join {restaurantData.name} Rewards, Win $500!</h1>
+                        </div>
+                        <div className="canvas-phone-div">
+                          <h1 className='canvas-phone-h1'>Email or Phone</h1>
+                          <InputMask
+                            className='canvas-phone-input'
+                            mask="+1(999) 999-9999"
+                            placeholder='+1 (555) 555-5555'
+                            type="text"
+                            name="email_or_phone"
+                            onChange={handleChange}
+                          />
+                          <div className="mt-3 mb-5">
+                            <h1 className='canvas-phone-h12'>Password</h1>
+                            <input
+                              className='canvas-phone-input'
+                              placeholder='********'
+                              type={passwordShown ? "text" : "password"}
+                              name="password"
+                              onChange={handleChange}
+
+                            />
+                            <i className='eye-icon text-lime-600 absolute mt-4' onClick={togglePasswordVisiblity}>{eye}</i>{" "}
+
+
+
+                          </div >
+
+
+
+
+
+                          <p className='canvas-phone-p1 ml-3'>Don't have an account yet?<button className='canvas-phone-span' onClick={() => changePath()}>Sign up</button></p>
+                        </div>
+                        <div className='mt-8'>
+                          <button className='canvas-footer-btn' type='submit'>Continue</button>
+                        </div>
+
+                        {/* <div className="w-[100%] bg-black opacity-80">
+                            <div className="container">
+                              <div className="row" >
+                                <div className="col-lg-4 canvas-footer-h1">
+                                  <h1>Earn points with every order</h1>
+                                </div>
+                                <div className="col-lg-4 canvas-footer-h1" >
+                                  <h1>Redeem points for free food</h1>
+                                </div>
+                                <div className="col-lg-4 canvas-footer-h1" >
+                                  <h1>Receive exclusive discounts</h1>
+                                </div>
+                              </div>
+                            </div>
+                            <button className='canvas-footer-btn' type='submit'>Continue</button>
+                            <h1 className='canvas-footer-heading'>By signing up, you agree to receive email and SMS marketing communications from {restaurantData.name} and our technology partner Owner.com and consent to our Platform Terms and Privacy Policy.</h1>
+                          </div> */}
+                      </form>
+                    ) : (
+                      <Singup changePath={changePath} />
+                    )}
+                  </div>
+                </div>
+              </nav>
+
+       </>)}
+
+
         </div>
         <div onClick={() => setOpen(!open)} className=' cursor-pointer md:hidden w-7 h-7'>
           {open ? <XMarkIcon color='white' /> : <Bars3BottomRightIcon color='white' />}
