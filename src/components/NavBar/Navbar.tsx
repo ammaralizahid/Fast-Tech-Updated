@@ -23,10 +23,10 @@ import { BookOpenIcon, Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/
 
 const Navbar = ({ localSomething }: any) => {
     let Links =[
-        {name:"HOME",link:"/"},
-        {name:"SERVICE",link:"/"},
-        {name:"ABOUT",link:"/"},
-        {name:"CONTACT",link:"/"},
+        {name:"Home",link:"/home"},
+        {name:"Orders",link:"/orders-history"},
+        {name:"About",link:"/"},
+        {name:"Contact",link:"/"},
       ];
       let [open, setOpen] =useState(false);
       const [isLogin, setIsLogin] = useState(true);
@@ -137,7 +137,7 @@ const Navbar = ({ localSomething }: any) => {
           <ul className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-black md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-12' : 'top-[-490px]'}`}>
             {Links.map((link) => (
               <li className='md:ml-8 md:my-0 my-7 font-semibold'>
-                <a href={link.link} className='text-white hover:text-blue-400 duration-500'>{link.name}</a>
+                <Link to={link.link} className='text-white hover:text-blue-400 duration-500'>{link.name}</Link>
               </li>
             ))}
           </ul>
@@ -152,7 +152,7 @@ const Navbar = ({ localSomething }: any) => {
             </div>
             <span className="bg-red-500 text-white text-xs rounded-full h-[19px] w-[10px] flex justify-center items-center px-2">{localSomething && JSON.parse(localSomething)?.cart?.length || 0}</span>
           </div>
-          <FaHeart className='text-red-500 text-4xl cursor-pointer mr-1' onClick={() => history.push('/wishlist')} />
+          <FaHeart className='text-red-500 text-4xl cursor-pointer mr-2' onClick={() => history.push('/wishlist')} />
           <CgProfile
         id="avatarButton"
         data-dropdown-toggle="userDropdown"
@@ -162,15 +162,17 @@ const Navbar = ({ localSomething }: any) => {
       />
 
       {isDropdownOpen && (
-        <div id="userDropdown"  className="bg-white divide-y absolute -ml-[77px] mt-[210px]  divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-          <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+        <div id="userDropdown"  className="cursor-pointer bg-black opacity-90 divide-y absolute -ml-[77px] mt-[210px]  divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+          <div className="px-4 py-3 text-sm text-white dark:text-white">
             <div>Bonnie Green</div>
             <div >name@flowbite.com</div>
-            <div onClick={openrestpass}>Reset Password</div>
           </div>
 
           <div className="py-1">
-            <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onClick={logOut}>Sign out</a>
+            <a className="block px-4 py-2 text-sm text-white hover:bg-green-500 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onClick={openrestpass}>Reset Password</a>
+          </div>
+          <div className="py-1">
+            <a className="block px-4 py-2 text-sm text-white hover:bg-green-500 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onClick={logOut}>Sign out</a>
           </div>
         </div>
       )}
