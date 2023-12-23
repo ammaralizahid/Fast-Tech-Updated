@@ -14,7 +14,7 @@ const Footer = () => {
     const [data, setData] = useState<any>([]);
 
 
-    console.log(data);
+    // console.log(data);
 
     useEffect(() => {
         axios.get(apiUrl).then(res => {

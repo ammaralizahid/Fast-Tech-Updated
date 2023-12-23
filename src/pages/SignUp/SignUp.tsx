@@ -6,6 +6,12 @@ import { useHistory } from 'react-router-dom';
 import { restaurantData } from '@/mocks/common';
 import InputMask from 'react-input-mask';
 
+
+import OtpInput from 'react-otp-input';
+
+
+
+
 type SignUp = {
   changePath: () => void
 }
@@ -98,13 +104,14 @@ const Singup = ({ changePath }: SignUp) => {
   const handlePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
 
     // Remove spaces, '-', and '()' for the input with name 'email_or_phone'
-    const sanitizedValue : any= e.target.value.replace(/[\s()-]/g, '')
+    const sanitizedValue: any = e.target.value.replace(/[\s()-]/g, '')
     setPhone(sanitizedValue)
   };
 
   const handleOtp = (e: any) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target || {};
 
+    setOtp(e)
     setToken((prevData) => ({
       ...prevData,
       [name]: value,
@@ -113,6 +120,9 @@ const Singup = ({ changePath }: SignUp) => {
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
+
+
+    
     try {
       setLoading(true);
       let data = formData
@@ -134,6 +144,9 @@ const Singup = ({ changePath }: SignUp) => {
       console.log('error', error);
     }
   };
+
+
+  const [otp, setOtp] = useState('');
   return (
 
 
@@ -184,11 +197,23 @@ const Singup = ({ changePath }: SignUp) => {
               <div className="row w-65">
 
                 <div className="col-lg-12">
-                  <input className='canvas-phone-input-signup-opt p-2' placeholder='' type="number"
+                  {/* <input className='canvas-phone-input-signup-opt p-2' placeholder='' type="number"
                     name="token"
                     onChange={handleOtp}
+                  /> */}
+
+                  <OtpInput
+                    value={otp}
+                    inputStyle={{ width: '3rem', height: "3rem", margin: "10px", backgroundColor: "black", border: "2px solid green" }}
+                    // onChange={setOtp}
+                    onChange={setOtp}
+                    numInputs={4}
+                    renderSeparator={<span>-</span>}
+                    renderInput={(props) => <input {...props} />}
                   />
                 </div>
+
+
 
                 {/* <div className="col-lg-3">
                                 <input className='canvas-phone-input-signup-opt' placeholder='' type="number"

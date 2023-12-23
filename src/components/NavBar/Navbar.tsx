@@ -153,14 +153,7 @@ const Navbar = ({ localSomething }: any) => {
           </div>
 
           <div className="flex items-center space-x-4">
-            {token ? (
-              <>
-                <div className="relative">
-                  <FaShoppingCart className='text-white text-4xl cursor-pointer' onClick={goToCheckout} />
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-2">{localSomething && JSON.parse(localSomething)?.cart?.length || 0}</span>
-                </div>
-                <FaHeart className='text-red-500 text-4xl cursor-pointer' onClick={() => history.push('/wishlist')} />
-                <CgProfile
+            <CgProfile
                   id="avatarButton" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start"
                   className="w-10 h-10 rounded-full cursor-pointer text-white"
                 />
@@ -178,6 +171,14 @@ const Navbar = ({ localSomething }: any) => {
                     <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onClick={logOut}>Sign out</a>
                   </div>
                 </div>
+            {token ? (
+              <>
+                <div className="relative">
+                  <FaShoppingCart className='text-white text-4xl cursor-pointer' onClick={goToCheckout} />
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-2">{localSomething && JSON.parse(localSomething)?.cart?.length || 0}</span>
+                </div>
+                <FaHeart className='text-red-500 text-4xl cursor-pointer' onClick={() => history.push('/wishlist')} />
+                
               </>
             ) : (
               <nav className="navbar border-radius-1 cursor-pointer navbar-dark text-center rounded-md bg-lime-500 sidebar-nav login-btn">

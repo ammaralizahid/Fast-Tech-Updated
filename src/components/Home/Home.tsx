@@ -21,7 +21,7 @@ const Home = () => {
     {
       queryKey: `getAllProducrs`,
       onSuccess: (response: any) => {
-        console.log('sanbdsibhkdsbh: ', response);
+        // console.log('sanbdsibhkdsbh: ', response);
         setProducts(response?.data);
         const categories = response?.data?.map((item: any) => {
           return {

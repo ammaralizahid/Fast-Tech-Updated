@@ -8,6 +8,10 @@ import { restaurantData } from '@/mocks/common'
 import InputMask from 'react-input-mask';
 
 
+
+import OtpInput from 'react-otp-input';
+import { setInterval } from 'timers/promises';
+
 const Restpassword = () => {
 
   const [moveotp, setMoveopt] = useState(false);
@@ -15,6 +19,7 @@ const Restpassword = () => {
   const [info, setInfo] = useState(false);
   const [loading, setLoading] = useState(false)
   const [email_or_phone, setEmailOrPhone] = useState(false)
+  const [ verifyButtonEnabled, setVerifyButtonEnabled ] = useState(false)
   const [reset_token, setResetToken] = useState()
   let [formData, setFormData] = useState({
     password: '',
@@ -35,7 +40,8 @@ const Restpassword = () => {
   }
 
   var handleverify = (e: any) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target || {};
+    setOtp(e)
 
     setResetToken(value);
   }
@@ -56,8 +62,17 @@ const Restpassword = () => {
         restaurant_id: restaurantData.restaurant_id,
       });
       if (response.status === 200) {
-        setMoveopt(!moveotp);
-        setVerify(!verify)
+        disableVerifyBtn();
+        setTimeout(() => {
+          setMoveopt(!moveotp);
+          setVerify(!verify)
+
+        }, 100)     
+
+
+
+
+
       } else {
         setLoading(false);
       }
@@ -67,6 +82,20 @@ const Restpassword = () => {
       toast.error(error?.response?.data?.errors[0]?.message)
     }
   };
+  
+  
+    const disableVerifyBtn= () => {
+      console.log("Welcome to disableVerifyBtn");
+      setVerifyButtonEnabled(true)
+
+      setTimeout(() => {
+        setVerifyButtonEnabled(false)
+      }, 60000)
+    }
+  
+  
+  
+  
   const onVerify = async (e: any) => {
     e.preventDefault();
     try {
@@ -87,6 +116,7 @@ const Restpassword = () => {
       console.log('error', error);
     }
   };
+
   const onPassword = async (e: any) => {
     e.preventDefault();
     try {
@@ -110,6 +140,7 @@ const Restpassword = () => {
     }
   };
 
+  const [otp, setOtp] = useState('');
 
   return (
 
@@ -177,11 +208,23 @@ const Restpassword = () => {
                     <div className="row w-65">
 
                       <div className="col-lg-12">
-                        <input className='canvas-phone-input-signup-opt p-2' placeholder='' type="number"
+                        {/* <input className='canvas-phone-input-signup-opt p-2' placeholder='' type="number"
                           name="token"
                           onChange={handleverify}
+                        /> */}
+
+                        <OtpInput
+                          value={otp}
+                          inputStyle={{ width: '3rem',height:"3rem",margin:"10px", backgroundColor:"black", border:"2px solid green" }}
+                          // onChange={setOtp}
+                          onChange={handleverify}
+                          numInputs={4}
+                          renderSeparator={<span>-</span>}
+                          renderInput={(props) => <input {...props} />}
                         />
                       </div>
+
+
 
                       {/* <div className="col-lg-3">
                                 <input className='canvas-phone-input-signup-opt' placeholder='' type="number"
