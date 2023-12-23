@@ -157,7 +157,7 @@ export default function Cart() {
     <>
       <Navbar />
 
-      <div className="container-fluid p-5 h-[100%] bg-black">
+      <div className="container-fluid lg:p-7 md:p-7 pt-4 h-[100%] bg-black">
         <div className="shadow-md py-5">
           <div className='row mt-5'>
             <div className="col-lg-5 bg-black px-10 flex-none bg-black h-[100%] border-2 border-green-500 rounded-lg overflow-auto">
@@ -165,7 +165,7 @@ export default function Cart() {
                 <h1 className="font-semibold text-2xl text-white">Shopping Cart</h1>
                 <h2 className="font-semibold text-2xl text-white">{cartItems?.cart?.length || 0} {cartItems?.cart?.length === 1 ? "Item" : "Items"} </h2>
               </div>
-              <div className="flex mt-10 mb-5 flex-col max-h-[60vh] overflow-y-auto">
+              <div className="flex mt-10 mb-5 max-h-[60vh] overflow-y-auto">
                 <h3 className="font-semibold text-gray-500 text-xs uppercase w-2/5 text-white">Product Details</h3>
                 <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center text-white">Quantity</h3>
                 <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center text-white">Price</h3>
@@ -189,7 +189,7 @@ export default function Cart() {
                           <button
                             disabled={enable}
                             onClick={() => incrementCount(item)}
-                            className="w-8 h-8 mr-5 border-2 border-gray-300 text-white rounded-md text-gray-600 hover:bg-black focus:outline-none focus:ring focus:border-blue-300"
+                            className="w-8 h-8 mr-2 border-2 border-gray-300 text-white rounded-md text-gray-600 hover:bg-black focus:outline-none focus:ring focus:border-blue-300"
                           >
                             +
                           </button>
@@ -197,7 +197,7 @@ export default function Cart() {
                           <button
                             disabled={enable}
                             onClick={() => decrementCount(item)}
-                            className="w-8 h-8 ml-5 border-2 border-gray-300 text-white rounded-md text-gray-600 hover:bg-black  focus:outline-none focus:ring focus:border-blue-300"
+                            className="w-8 h-8 ml-2 border-2 border-gray-300 text-white rounded-md text-gray-600 hover:bg-black  focus:outline-none focus:ring focus:border-blue-300"
                           >
                             -
                           </button>
