@@ -34,7 +34,7 @@
   font-size: 14px;
   color: white;
   border: 1px solid green;
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
 }
 .address{
   background-color: rgb(2, 173, 2);
@@ -43,23 +43,23 @@
 }
 
 @media (max-width: 600px) {
-.pref-btn{
-  width: 30%;
-  height: 3rem;
-  border-radius: 10px;
-  font-size: 14px;
-  color: white;
-  border: 1px solid green;
-  margin-left: 1rem;
-}
-.pref-focus-btn{
-  width: 20%;
-  height: 3rem;
-  border-radius: 10px;
-  font-size: 14px;
-  color: white;
-  background-color: rgb(2, 173, 2);
-  border: 1px solid green;
-  margin-left: 1rem;
-}
+  .pref-btn{
+    width: 30%;
+    height: 3rem;
+    border-radius: 10px;
+    font-size: 14px;
+    color: white;
+    border: 1px solid green;
+    margin-left: 1rem;
+  }
+  .pref-focus-btn{
+    width: 30%;
+    height: 3rem;
+    border-radius: 10px;
+    font-size: 14px;
+    color: white;
+    background-color: rgb(2, 173, 2);
+    border: 1px solid green;
+    margin-left: 1rem;
+  }
 }

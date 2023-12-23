@@ -99,12 +99,7 @@ fetchOrders();
                     </div>
                 </div>
             </div>
-
-
             <Footer />
-
-
-
         </>
     )
 }

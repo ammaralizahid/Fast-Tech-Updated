@@ -7,7 +7,7 @@
   background-color: rgb(2, 173, 2);
   border: 1px solid green;
   cursor: pointer;
-  margin-left: 1rem;
+  margin-right: 1rem;
 }
 .coupon-btn:hover{
   width: 30%;
@@ -153,10 +153,11 @@
     margin-left: 1rem;
   }
   .coupon-btn{
-    width: 50%;
-    height: 3rem;
+    width: 30%;
+    height: 2.5rem;
     border-radius: 10px;
     font-size: 14px;
+    margin-right: 1rem;
     color: white;
     background-color: rgb(2, 173, 2);
     border: 1px solid green;
@@ -165,7 +166,7 @@
   }
   .coupon-btn:hover{
     width: 30%;
-    height: 3rem;
+    height: 2.5rem;
     border-radius: 10px;
     font-size: 14px;
     color: white;

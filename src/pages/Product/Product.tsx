@@ -13,6 +13,7 @@ import { useConfig } from '@/network/Common/common';
 import { FaHeart } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import axios from 'axios';
+import Footer from '@/components/Footer/Footer';
 export default function Product() {
   const { id } = useParams<any>()
   const history = useHistory()
@@ -198,8 +199,9 @@ setIsWishList(!isWishlist)
 
   return (
     <>
+            <Navbar />
       <div className="container-fluid p-0">
-        <div className="row m-0">
+        <div className="row mt-[7rem]">
           <div className="col-lg-4 col-sm-12 p-0">
             <div className="h-[30%]">
               <img
@@ -348,7 +350,7 @@ setIsWishList(!isWishlist)
         </div>
       </div>
       <ToastContainer />
-
+      <Footer />
     </>
   );
 }

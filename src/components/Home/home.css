@@ -88,7 +88,6 @@
     background-color: rgb(2, 173, 2);
     border: 1px solid green;
     cursor: pointer;
-    margin-left: 1rem;
   }
 
 .h-image-div{
@@ -275,10 +274,10 @@
       /* margin-top: 5%; */
       background: rgb(2, 173, 2) !important;
       border: 1px solid green;
-      cursor: pointer; /* Keep this line if you want to override other text colors */
+      cursor: pointer;
     }
   }
-.add-cart-btn-home-lastsec{
+/* .add-cart-btn-home-lastsec{
     width: 150px;
     height: 35px;
     z-index: 100;
@@ -287,8 +286,8 @@
     color: white;
     background: rgb(2, 173, 2) !important;
     border: 1px solid green;
-    cursor: pointer; /* Keep this line if you want to override other text colors */
-  }
+    cursor: pointer;
+  } */
 /* width */
 ::-webkit-scrollbar {
   width: 1px;

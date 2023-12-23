@@ -6,6 +6,8 @@ import { usePopularProducts } from '@/network/products/products'
 import { restaurantData } from '@/mocks/common';
 import './cart.css'
 import { useConfig } from '@/network/Common/common';
+import Navbar from '@/components/NavBar/Navbar';
+import Footer from '@/components/Footer/Footer';
 export default function Cart() {
   let [count, setCount] = useState(0);
   let [itemsCount, setItemsCount] = useState(0);
@@ -15,9 +17,9 @@ export default function Cart() {
   const [cart, setCart] = useState<any>([])
   const [config, setConfig] = useState<any>({})
   const [restaurant_id, setRestaurantId] = useState(restaurantData?.restaurant_id)
-  const [ tip, setTip ] = useState<any>(0)
+  const [tip, setTip] = useState<any>(0)
   const history = useHistory();
-  const [ enable, setEnable ] = useState<any>(false)
+  const [enable, setEnable] = useState<any>(false)
 
   async function incrementCount(product: any) {
     await setEnable(true)
@@ -26,10 +28,10 @@ export default function Cart() {
     let foundedItem = duplicateCart?.find((item: any) => item?.id === product?.id);
     const foundedItemIndex = duplicateCart?.findIndex((item: any) => item?.id === product?.id);
 
-    duplicateCartItems.push({...foundedItem })
+    duplicateCartItems.push({ ...foundedItem })
     await localStorage.setItem('cart_items', JSON.stringify({ user_id: localStorage.getItem('user_id'), cart: duplicateCartItems }))
 
-    setCartItems({ user_id: localStorage.getItem('user_id'), cart: duplicateCartItems})
+    setCartItems({ user_id: localStorage.getItem('user_id'), cart: duplicateCartItems })
 
 
     foundedItem = {
@@ -57,7 +59,7 @@ export default function Cart() {
     let foundedItem = duplicateCart?.find((item: any) => item?.id === product?.id);
     const foundedItemIndex = duplicateCart?.findIndex((item: any) => item?.id === product?.id);
 
-    if(foundedItem?.quantity > 1) {
+    if (foundedItem?.quantity > 1) {
       foundedItem = {
         ...foundedItem,
         quantity: foundedItem?.quantity - 1,
@@ -67,7 +69,7 @@ export default function Cart() {
       duplicateCart.splice(foundedItemIndex, 1, foundedItem)
 
       setCart(duplicateCart)
-    }else {
+    } else {
       duplicateCart.splice(foundedItemIndex, 1)
 
       setCart(duplicateCart)
@@ -76,7 +78,7 @@ export default function Cart() {
     let duplicateCartItemsIndex = duplicateCartItems.findIndex((item: any) => item?.id === product.id)
     duplicateCartItems.splice(duplicateCartItemsIndex, 1)
 
-    setCartItems({ user_id: localStorage.getItem('user_id'), cart: duplicateCartItems})
+    setCartItems({ user_id: localStorage.getItem('user_id'), cart: duplicateCartItems })
     await localStorage.setItem('cart_items', JSON.stringify({ user_id: localStorage.getItem('user_id'), cart: duplicateCartItems }))
     setEnable(false)
   }
@@ -107,14 +109,14 @@ export default function Cart() {
   }
 
   const continueToCheckoutButton = () => {
-    localStorage.setItem('totalCheckoutAmount', (cartItems?.cart?.reduce((a: number, item: any) => a + item?.price, 0) + config?.delivery_charge + config?.service_fee_estimated_tax + ( tip ? (tip / 100)*(cartItems?.cart?.reduce((a: number, item: any) => a + item?.price, 0) + config?.delivery_charge + config?.service_fee_estimated_tax) : 0 )).toFixed(2));
+    localStorage.setItem('totalCheckoutAmount', (cartItems?.cart?.reduce((a: number, item: any) => a + item?.price, 0) + config?.delivery_charge + config?.service_fee_estimated_tax + (tip ? (tip / 100) * (cartItems?.cart?.reduce((a: number, item: any) => a + item?.price, 0) + config?.delivery_charge + config?.service_fee_estimated_tax) : 0)).toFixed(2));
     history.push(`/checkout`);
   }
 
   const addItemToCart = (item: any) => {
     let cart = [...cartItems?.cart]
 
-    cart.push({...item})
+    cart.push({ ...item })
 
     localStorage.setItem('cart_items', JSON.stringify({ user_id: localStorage.getItem('user_id'), cart }))
 
@@ -124,12 +126,12 @@ export default function Cart() {
 
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem('cart_items') as any);
-    const updatedCart:any = [];
+    const updatedCart: any = [];
 
     cartItems?.cart?.forEach((product: any) => {
       let foundedProduct = updatedCart?.find((item: any) => item?.id === product?.id)
       const foundedProductIndex = updatedCart?.findIndex((item: any) => item?.id === product?.id)
-      if(foundedProductIndex !== -1) {
+      if (foundedProductIndex !== -1) {
         foundedProduct = {
           ...foundedProduct,
           quantity: foundedProduct?.quantity + 1,
@@ -137,7 +139,7 @@ export default function Cart() {
         }
 
         updatedCart.splice(foundedProductIndex, 1, foundedProduct)
-      }else {
+      } else {
         updatedCart.push({
           ...product,
           quantity: 1,
@@ -148,16 +150,20 @@ export default function Cart() {
 
     setCart(updatedCart)
   }, [])
-console.log("=========== config ===============", config.delivery_charge);
+
+  console.log("=========== config ===============", config.delivery_charge);
 
   return (
+    <>
+      <Navbar />
+
       <div className="container-fluid p-5 h-[100%] bg-black">
         <div className="shadow-md py-5">
-          <div className='row'>
+          <div className='row mt-5'>
             <div className="col-lg-5 bg-black px-10 flex-none bg-black h-[100%] border-2 border-green-500 rounded-lg overflow-auto">
               <div className="flex justify-between border-b pb-8 pt-2">
                 <h1 className="font-semibold text-2xl text-white">Shopping Cart</h1>
-                <h2 className="font-semibold text-2xl text-white">{cartItems?.cart?.length || 0} { cartItems?.cart?.length === 1 ? "Item" : "Items"} </h2>
+                <h2 className="font-semibold text-2xl text-white">{cartItems?.cart?.length || 0} {cartItems?.cart?.length === 1 ? "Item" : "Items"} </h2>
               </div>
               <div className="flex mt-10 mb-5 flex-col max-h-[60vh] overflow-y-auto">
                 <h3 className="font-semibold text-gray-500 text-xs uppercase w-2/5 text-white">Product Details</h3>
@@ -196,8 +202,8 @@ console.log("=========== config ===============", config.delivery_charge);
                             -
                           </button>
                         </div>
-                        <span className="text-center w-1/5 font-semibold text-sm text-white ">{config?.currency_symbol} { item.price }</span>
-                        <span className="text-center w-1/5 font-semibold text-sm text-white">{config?.currency_symbol} { item.totalPrice.toFixed(2) }</span>
+                        <span className="text-center w-1/5 font-semibold text-sm text-white ">{config?.currency_symbol} {item.price}</span>
+                        <span className="text-center w-1/5 font-semibold text-sm text-white">{config?.currency_symbol} {item.totalPrice.toFixed(2)}</span>
                       </div>
                       <hr className='w-[100%] text-white border-3 border-green-500' />
                     </>
@@ -214,7 +220,7 @@ console.log("=========== config ===============", config.delivery_charge);
             </div>
             <div className='col-lg-6 bg-black px-10 flex-none bg-black h-[100%] pb-3 border-2 border-green-500 rounded-lg'>
 
-            <div className='lg:p-3 max-h-[80vh]'>
+              <div className='lg:p-3 max-h-[80vh]'>
                 <span className='text-white text-2xl'>Recommended Sides</span>
                 <hr className='w-[100%] text-white mt-2 mb-4 border-2 border-gray-300' />
                 <div className='overflow-y-auto'>
@@ -259,7 +265,7 @@ console.log("=========== config ===============", config.delivery_charge);
                   type="text"
                   name="coupon"
                 />
-              <button className='coupon-btn p-2' type='submit'>Apply</button>
+                <button className='coupon-btn p-2' type='submit'>Apply</button>
 
               </div>
               <div>
@@ -275,7 +281,7 @@ console.log("=========== config ===============", config.delivery_charge);
               <div className='grid'>
                 <div className='flex justify-between mt-4'>
                   <span className='text-bold text-white text-lg'>Items Price</span>
-                  <span className='text-bold text-white text-lg'>{config?.currency_symbol} { cartItems?.cart?.reduce((a: number, item: any) => a + item?.price, 0).toFixed(2) }</span>
+                  <span className='text-bold text-white text-lg'>{config?.currency_symbol} {cartItems?.cart?.reduce((a: number, item: any) => a + item?.price, 0).toFixed(2)}</span>
                 </div>
                 <div className='flex justify-between mt-4'>
                   <span className='text-bold text-white text-lg'>Fee & Taxes</span>
@@ -288,7 +294,7 @@ console.log("=========== config ===============", config.delivery_charge);
                 <hr className='w-[100%] mt-3 text-white border-3 border-green-500' />
                 <div className='flex justify-between mt-4'>
                   <span className='text-bold text-gray-400 text-2xl'>Total Amount</span>
-                  <span className='text-bold text-white text-2xl'>{config?.currency_symbol} { (cartItems?.cart?.reduce((a: number, item: any) => a + item?.price, 0) + config?.delivery_charge + config?.service_fee_estimated_tax + ( tip ? (tip / 100)*(cartItems?.cart?.reduce((a: number, item: any) => a + item?.price, 0) + config?.delivery_charge + config?.service_fee_estimated_tax) : 0 )).toFixed(2) } </span>
+                  <span className='text-bold text-white text-2xl'>{config?.currency_symbol} {(cartItems?.cart?.reduce((a: number, item: any) => a + item?.price, 0) + config?.delivery_charge + config?.service_fee_estimated_tax + (tip ? (tip / 100) * (cartItems?.cart?.reduce((a: number, item: any) => a + item?.price, 0) + config?.delivery_charge + config?.service_fee_estimated_tax) : 0)).toFixed(2)} </span>
                 </div>
                 <hr className='w-[100%] my-3 text-white border-3 border-green-500' />
 
@@ -301,5 +307,8 @@ console.log("=========== config ===============", config.delivery_charge);
           </div>
         </div>
       </div>
+      <Footer />
+    </>
+
   )
 }

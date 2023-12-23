@@ -67,25 +67,25 @@ const Home = () => {
     return products?.map((product: any, index: number) => (
       <div className="col-lg-6 col-sm-12 col-xs-12 p-4 cursor-pointer" key={index}>
         <div className="h-full border rounded-xl flex items-center justify-center text-left sm:text-left">
-          <div className="flex-grow ml-2" onClick={() => history.push(`/product/${product?.id}`)}>
+          <div className="flex-grow ml-2" >
             <h2
               className="text-2xl text-left title-font font-bold text-green-500 text-lg text-white-900"
-            >
+              onClick={() => history.push(`/product/${product?.id}`)} >
               {product?.name}
             </h2>
-            <p className="mb-5 w-[90%] h-[50px]">{product?.description}</p>
+            <p className="mb-5 w-[90%] h-[50px]" onClick={() => history.push(`/product/${product?.id}`)}>{product?.description}</p>
             <div className='flex justify-between lg:mt-[17%] mr-5 items-center'>
-            <button
-              className='add-cart-btn-home-lastsec'
-              onClick={(e) => addProductToCart(product)}
+              <button
+                className='add-cart-btn-home-lastsec'
+                onClick={(e) => addProductToCart(product)}
               >
-              Add to Cart
-            </button>
-            <p className="" style={{ color: '#86bd57' }}>
-              <span className='text-bold text-xl'>$ {product?.price}</span>
-            </p>
-              </div>
-              </div>
+                Add to Cart
+              </button>
+              <p className="" style={{ color: '#86bd57' }}>
+                <span className='text-bold text-xl'>$ {product?.price}</span>
+              </p>
+            </div>
+          </div>
           <img
             onClick={() => history.push(`/product/${product?.id}`)}
             alt="team"
@@ -111,36 +111,36 @@ const Home = () => {
       <ToastContainer />
       <div className='flex flex-column'>
         <div >
-        <Navbar localSomething={localSomething} />
+          <Navbar localSomething={localSomething} />
         </div>
         <div className=''>
           <div className="pt-[114px] bg-[#161616]">
             <div className="h-line p-1 h-[30px] overflow-hidden">
               <div className="container">
-              <div className="row">
+                <div className="row">
 
-              <h1 className='h-line-h1 px-2 sm:text-[13px]' onClick={() => scrollToProducts(-1)}>
-                Join {restaurantData.name} Rewards to get free items when you order here →
-              </h1>
+                  <h1 className='h-line-h1 px-2 sm:text-[13px]' onClick={() => scrollToProducts(-1)}>
+                    Join {restaurantData.name} Rewards to get free items when you order here →
+                  </h1>
+                </div>
               </div>
             </div>
-              </div>
             <div className="sec3-bar">
               <>
                 <nav className="bg-gray-200 border-t-[1px] mb-8 border-b-[1px]  border-gray-500 bg-black py-3">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div className="flex overflow-x-auto">
-    <ol className="items-center   flex text-gray-700">
-      {categories?.map((item: any, index: number) => (
-        <li key={index} className="w-[136px]">
-          <a href="#" className="hover:text-lime-500" onClick={() => scrollToProducts(item.id)}>
-            {item?.name}
-          </a>
-        </li>
-      ))}
-    </ol>
-  </div>
-</div>
+                  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex overflow-x-auto">
+                      <ol className="items-center   flex text-gray-700">
+                        {categories?.map((item: any, index: number) => (
+                          <li key={index} className="w-[136px]">
+                            <a href="#" className="hover:text-lime-500" onClick={() => scrollToProducts(item.id)}>
+                              {item?.name}
+                            </a>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  </div>
 
                 </nav>
               </>

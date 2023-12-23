@@ -52,7 +52,7 @@ const OrderDetails = () => {
       <div className="oderid-div">
     <div className="container flex justify-around ">
 
-          <ul role="list" className="divide-y ml-15  w-6/12  border-lime-600 divide-lime-600">
+          <ul role="list" className="divide-y py-[5rem] ml-15 lg:w-6/12  border-lime-600 divide-lime-600">
             {order?.map((value: any) => (
               <li key={value.email} className="flex justify-between gap-x-6 py-5">
                 <div className="flex min-w-0 gap-x-4">

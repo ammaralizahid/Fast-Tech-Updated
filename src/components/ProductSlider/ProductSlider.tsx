@@ -48,17 +48,18 @@ const ProductSlider = ({ addProductToCart }: any) => {
           <div className="carousel-item active">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {popularProducts?.map((item: any, index: number) => (
-                <div key={index} className="border cursor-pointer border-success border-green-600 text-white rounded-xl" onClick={() => history.push(`/product/${item?.id}`)}
+                <div key={index} className="border cursor-pointer border-success border-green-600 text-white rounded-xl"
                 >
                   <div className="overflow-hidden h-40">
                     <img
                       src={`${config?.base_urls?.product_image_url}/${item?.image}`}
                       className="object-cover w-full h-full"
                       alt=""
+                      onClick={() => history.push(`/product/${item?.id}`)}
                     />
                   </div>
                   <div className="p-4">
-                    <h4 className="text-lg font-semibold">{item?.name}</h4>
+                    <h4 className="text-lg font-semibold" onClick={() => history.push(`/product/${item?.id}`)}>{item?.name}</h4>
                     <p className="item-price">
                       <span>$ {item?.price}</span>
                     </p>

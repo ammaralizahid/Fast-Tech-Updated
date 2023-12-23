@@ -135,7 +135,7 @@ const Singup: React.FC<SignUpProps> = ({ changePath }) => {
       {!moveotp && (
         <form className="offcanvas-body bg-black" onSubmit={getotp}>
           <div className="canvas-h1-div-signup ">
-            <h1 className="canvas-h1-signup">Join Brickell Rewards, Win $500!</h1>
+            <h1 className="canvas-h1-signup">Join {restaurantData.name} Rewards, Win $500!</h1>
           </div>
           <div className="canvas-phone-div-signup ">
             <h1 className="canvas-phone-h1-signup">Phone</h1>
@@ -188,7 +188,7 @@ const Singup: React.FC<SignUpProps> = ({ changePath }) => {
       {info && (
         <form className="offcanvas-body bg-black" onSubmit={onSubmit}>
           <div className="canvas-h1-div-signup">
-            <h1 className="canvas-h1-signup">Join Brickell Rewards, Win $500!</h1>
+            <h1 className="canvas-h1-signup">Join {restaurantData.name} Rewards, Win $500!</h1>
           </div>
           <div className="canvas-phone-div-signup">
             <h1 className="canvas-phone-h1-signup">Phone</h1>

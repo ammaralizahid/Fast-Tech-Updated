@@ -9,6 +9,8 @@ import { useConfig } from '@/network/Common/common';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import Product from '../Product/Product';
+import Navbar from '@/components/NavBar/Navbar';
+import Footer from '@/components/Footer/Footer';
 
 export default function WishList() {
 
@@ -61,11 +63,12 @@ export default function WishList() {
 
   return (
     <>
+      <Navbar />
     <ToastContainer/>
     <div className='bg-black'>
       <div className="container mx-auto">
   <div className="shadow-md py-5">
-    <div className='row'>
+    <div className='row mt-[7rem]'>
       <div className='col-lg-3'>
 
       </div>
@@ -117,6 +120,7 @@ export default function WishList() {
         </div>
       </div>
     </div>
+    <Footer />
     </>
   )
 }
