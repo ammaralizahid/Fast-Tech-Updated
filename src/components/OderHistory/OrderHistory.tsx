@@ -12,7 +12,7 @@ import axios from 'axios';
 
 
 const OrderHistory = () => {
-  const [orders, setOrders]=useState()
+  const [orders, setOrders]=useState([])
 const fetchOrders = async () => {
   try {
     // Get access_token from localStorage
@@ -77,24 +77,6 @@ fetchOrders();
                         </div>
                         ))
                       }
-
-                        {/* <div className="col-lg-6 mt-5">
-                            <div className=" oderHis-div w-11/12 rounded">
-                                <div className="flex">
-
-                                    <img src={hpsecroduct3} className='img ml-2 mt-2 rounded w-24 h-24 border ' alt="" />
-                                    <div className="data ">
-
-                                        <h1 className='mt-3 ml-3 text-xs text-white'>Oder ID:10000025</h1>
-                                        <p className='mt-1 ml-3 text-s text-gray-400'>5 items</p>
-                                        <h1 className='mt-2 ml-3 text-xs text-lime-500'>Delivered</h1>
-                                    </div>
-                                </div>
-                                <button
-                                    className='oderHis-addcart-btn p-2 '
-                                >Details</button>
-                            </div>
-                        </div> */}
 
                     </div>
                 </div>

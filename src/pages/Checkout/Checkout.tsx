@@ -155,11 +155,14 @@ export default function Checkout() {
   };
 
   const truncateText = (text: string, limit: number) => {
-    const words = text.split(' ');
+
+    const words = text
+    console.log("======words====",words.length);
+
     if (words.length > limit) {
       console.log("words", words, "limit", limit);
 
-      return words.slice(0, limit).join(' ') + '...';
+      return words.slice(0, limit) + '...';
     }
     return text;
   };
@@ -286,10 +289,10 @@ export default function Checkout() {
                       <div className='col-lg-6 col-sm-12'>
 
                         <div className='flex gap-2 mb-5' onClick={() => { handleAddressClick(index); calculateDistance(value) }}>
-                          <div className={`flex items-center ${selectedAddressIndex === index ? 'address' : 'bg-black'}  p-2 w-[300px] h-[100px] border-2 border-green-500 rounded-lg cursor-pointer`}>
+                          <div className={`flex items-center ${selectedAddressIndex === index ? 'address' : 'bg-black'}  p-2 w-[100%] h-[100px] border-2 border-green-500 rounded-lg cursor-pointer`}>
                             <IoHomeOutline className={`${selectedAddressIndex === index ? 'text-white' : 'text-green-500'} text-xl cursor-pointer mr-2`} />
-                            <span className='text-md text-white w-[200px]'>
-                              {truncateText(value.address, 20)}
+                            <span className='text-md text-white w-[100%]'>
+                              {truncateText(value.address, 50)}
                             </span>
 
                           </div>
