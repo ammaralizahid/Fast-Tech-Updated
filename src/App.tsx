@@ -17,6 +17,7 @@ import PaymentCards from './pages/PaymentCards/PaymentCards'
 import WishList from './pages/Wishlist/Wishlist'
 import OrderHistory from './components/OderHistory/OrderHistory'
 import OrderDetails from './components/OderHistryID/OrderDetails'
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <AuthProvider>
       {/* <Navbar/> */}
           <BrowserRouter>
+          <ToastContainer />
             <Switch>
             <NonAuthRoute exact path="/product/:id">
                 <Product />

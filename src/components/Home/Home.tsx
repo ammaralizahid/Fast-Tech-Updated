@@ -7,7 +7,7 @@ import ProductSlider from '../ProductSlider/ProductSlider';
 import Footer from '../Footer/Footer';
 import { getAllProducts } from '@/network/products/products';
 import { useConfig } from '@/network/Common/common';
-import { toast, ToastContainer } from 'react-toastify';
+import Toast from '../Toast/Toast'
 
 const Home = () => {
   const history = useHistory();
@@ -50,7 +50,7 @@ const Home = () => {
 
   const addProductToCart = (item: any) => {
     if (!localStorage.getItem('access_token')) {
-      return toast.error('You are not logged in.');
+      return Toast('You are not logged in.e', 'error');
     }
     const cartExists = localSomething ? JSON.parse(localSomething) : false;
 
@@ -108,7 +108,6 @@ const Home = () => {
 
   return (
     <>
-      <ToastContainer />
       <div className='flex flex-column'>
         <div >
           <Navbar localSomething={localSomething} />
