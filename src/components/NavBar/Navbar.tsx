@@ -11,7 +11,7 @@ import { CgProfile } from "react-icons/cg";
 import { FaRegHeart, FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import navlogo from "./nav-logo.png"
-import { toast } from 'react-toastify'
+import Toast from '../Toast/Toast'
 import InputMask from 'react-input-mask';
 import { useForm } from "react-hook-form";
 // import "./styles.css";
@@ -80,7 +80,8 @@ const Navbar = ({ localSomething }: any) => {
       });
 
       if (response.status === 200) {
-        toast.success('Logged In Successfully.');
+        // toast.success('Logged In Successfully.');
+        Toast('Logged In Successfully.', 'success');
         login(response);
         window.location.reload()
       } else {
@@ -92,7 +93,9 @@ const Navbar = ({ localSomething }: any) => {
       const { data } = response;
       const { errors } = data;
 
-      toast.error(`${errors[0]?.message}`);
+      // toast.error(`${errors[0]?.message}`);
+      Toast(`${errors[0]?.message}`, 'error');
+
     }
   };
 

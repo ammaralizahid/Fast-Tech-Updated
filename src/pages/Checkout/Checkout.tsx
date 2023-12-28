@@ -7,7 +7,8 @@ import { useAddAddress, useGetAddress, useGetPaymentCard, useConfig } from '@/ne
 import { restaurantData } from '@/mocks/common';
 import { IoHomeOutline } from "react-icons/io5";
 import { CiCreditCard1 } from "react-icons/ci";
-import { toast, ToastContainer } from 'react-toastify';
+// import { toast, ToastContainer } from 'react-toastify';
+import Toast from '../../components/Toast/Toast'
 import '../Cart/Cart'
 import './checkout.css'
 import axios from 'axios';
@@ -74,7 +75,8 @@ export default function Checkout() {
         }
       } catch (error: any) {
         setLoading(false);
-        toast.error(error?.response?.data?.message);
+        // toast.error(error?.response?.data?.message);
+      Toast(`${error?.response?.data?.message}`, 'error');
         console.log('error>>>>>', error?.response?.data?.message);
       }
     };
@@ -151,7 +153,8 @@ export default function Checkout() {
     const withinRadius = isWithinRadius(originLatLong, customerLocation);
 
     console.log(withinRadius ? 'Within the radius' : 'Outside the radius');
-    toast.error(!withinRadius && 'Cannot dilever at this location')
+    // toast.error(!withinRadius && 'Cannot dilever at this location')
+    Toast(!withinRadius ? 'Cannot deliver at this location' : '', 'error');
   };
 
   const truncateText = (text: string, limit: number) => {
@@ -235,29 +238,34 @@ export default function Checkout() {
         localStorage.removeItem('cart_items');
         localStorage.removeItem('totalCheckoutAmount');
 
-        toast.success("Order Placed Successfully.", {
-          position: "bottom-right",
-          autoClose: 3000, // 3 seconds
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
+        // toast.success("Order Placed Successfully.", {
+        //   position: "bottom-right",
+        //   autoClose: 3000, // 3 seconds
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        // });
+      Toast('Order Placed Successfully.', 'success');
         setTimeout(() => {
           history.push('/home');
         }, 3000);
       } else {
-        toast.error("Order Cannot Be Placed.");
+        // toast.error("Order Cannot Be Placed.");
+      Toast('Order Cannot Be Placed.', 'error');
       }
     } catch (error: any) {
       if (error?.response?.data?.errors) {
         // Display errors from the API response using toast.error
         error.response.data.errors.forEach((err: any) => {
-          toast.error(`${err.message}`);
+          // toast.error(`${err.message}`);
+      Toast(`${err.message}`, 'error');
         });
       } else {
         // Display a generic error message if there are no specific error details in the response
-        toast.error("An error occurred while placing the order.");
+        // toast.error("An error occurred while placing the order.");
+      Toast('An error occurred while placing the order.', 'error');
+
       }
     }
   };
@@ -266,7 +274,7 @@ export default function Checkout() {
   return (
     <>
       <Navbar />
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <div className='bg-black'>
         <div className="container mx-auto">
           <div className="shadow-md py-5">
@@ -399,7 +407,7 @@ export default function Checkout() {
           </div>
         </div>
       </div>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <Footer />
     </>
   )

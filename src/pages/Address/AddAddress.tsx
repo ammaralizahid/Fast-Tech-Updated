@@ -5,7 +5,8 @@ import { useAddAddress, useGetAddress } from '@/network/Common/common';
 import { restaurantData } from '@/mocks/common';
 import { IoHomeOutline } from 'react-icons/io5';
 import { CiCreditCard1 } from 'react-icons/ci';
-import { toast, ToastContainer } from 'react-toastify';
+// import { toast, ToastContainer } from 'react-toastify';
+import Toast from '../../components/Toast/Toast'
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
@@ -77,11 +78,15 @@ console.log("autocomplete", autoCompleteAddresses);
         latitiude:center.lat
       });
       if (response.status === 200) {
-        toast('Address Added Successfully.');
+        // toast('Address Added Successfully.');
+      Toast('Address Added Successfully.', 'success');
+
       }
     } catch (error: any) {
       setLoading(false);
-      toast.error(error?.response?.data?.errors[0]?.message);
+      // toast.error(error?.response?.data?.errors[0]?.message);
+      Toast(`${error?.response?.data?.errors[0]?.message}`, 'error');
+
       console.log('error', error?.response?.data?.errors[0]?.message);
     }
   };
@@ -137,7 +142,9 @@ console.log("autocomplete", autoCompleteAddresses);
           },
         });
 
-        toast('Address deleted successfully');
+        // toast('Address deleted successfully');
+      Toast('Address deleted successfully', 'success');
+
       } else {
         console.error('Failed to delete address');
       }
@@ -204,7 +211,7 @@ console.log("=================================", value.description);
 
   return (
     <>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <div className="bg-black">
         <div className="container mx-auto">
           <div className="shadow-md py-5">

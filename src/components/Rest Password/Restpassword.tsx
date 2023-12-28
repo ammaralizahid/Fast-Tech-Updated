@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Toast from '../Toast/Toast'
 import { useForgetPassword, useVerifyToken, useResetPassword } from '@/network/verify/verify'
 import { useAuth } from '@/hooks/AuthContext'
 import { useHistory } from 'react-router-dom';
@@ -64,7 +63,8 @@ const Restpassword = () => {
     } catch (error: any) {
       setLoading(false);
       console.log('error====', error?.response?.data?.errors[0]?.message);
-      toast.error(error?.response?.data?.errors[0]?.message)
+      // toast.error(error?.response?.data?.errors[0]?.message)
+      Toast(`${error?.response?.data?.errors[0]?.message}`, 'error');
     }
   };
   const onVerify = async (e: any) => {
@@ -98,7 +98,9 @@ const Restpassword = () => {
         email_or_phone: email_or_phone
       });
       if (response.status === 200) {
-        toast("Password Reset Successfully.")
+        // toast("Password Reset Successfully.")
+      Toast('Password Reset Successfully.', 'success');
+
         setVerify(!verify)
         setInfo(!info)
       } else {
@@ -114,7 +116,6 @@ const Restpassword = () => {
   return (
 
     <>
-      <ToastContainer />
 
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2 mt-1">
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">

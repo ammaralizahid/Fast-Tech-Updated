@@ -146,12 +146,12 @@ const Home = () => {
             </div>
             <ProductSlider addProductToCart={addProductToCart} />
           </div>
-          <div className="h-main-sec3 bg-gray-900 pt-5" ref={productsSectionRef}>
+          <div className="h-main-sec3 bg-gray-900 pt-5 w-full" ref={productsSectionRef}>
             <section className="text-white body-font">
-              <div className="lg:px-5 mx-auto">
+              <div className="lg:px-5 mx-auto lg:w-[1000px] xl:w-[1400px]">
                 {products?.map((item: any, index: number) => (
                   <div key={index} className="mb-10" data-category-id={item.id}>
-                    <h1 className="text-2xl font-medium title-font text-white  lg:ml-[4rem] mb-3">
+                    <h1 className="text-2xl font-medium title-font text-white  lg:ml-[4rem] mb-3 ml-3">
                       {item?.name}
                     </h1>
                     <div className="row lg:p-[3rem]">{mapData(item?.products)}</div>
