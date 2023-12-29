@@ -83,7 +83,7 @@ const Navbar = ({ localSomething }: any) => {
         // toast.success('Logged In Successfully.');
         Toast('Logged In Successfully.', 'success');
         login(response);
-        window.location.reload()
+        // window.location.reload()
       } else {
         setLoading(false);
       }
