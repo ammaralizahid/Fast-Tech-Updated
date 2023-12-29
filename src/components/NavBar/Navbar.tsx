@@ -243,7 +243,7 @@ const Navbar = ({ localSomething }: any) => {
                           <i className='eye-icon text-lime-600 absolute mt-4' onClick={togglePasswordVisiblity}>{eye}</i>{" "}
 
                         </div>
-                        <p className='canvas-phone-p1 ml-3 mb-10'>Don't have an account yet?<button className='canvas-phone-span' onClick={() => changePath()}>Sign up</button></p>
+                        <p className='canvas-phone-p1 ml-3 mb-10'>Don't have an account yet? <button className='canvas-phone-span' onClick={() => changePath()}>Sign up</button></p>
                       </div>
                       <div className='flex items-center justify-center'>
                         <button className='canvas-footer-btn' type='submit'>Continue</button>

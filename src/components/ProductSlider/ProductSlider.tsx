@@ -64,7 +64,7 @@ const ProductSlider = ({ addProductToCart }: any) => {
                       <span>$ {item?.price}</span>
                     </p>
                     <button
-                      className='h-addcart-btn p-2 mt-4'
+                      className='h-addcart-btn mt-4'
                       onClick={() => addProductToCart(item)}
                     >
                       ADD TO CART

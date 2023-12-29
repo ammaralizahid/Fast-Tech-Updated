@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import "../Home/home.css";
+import { useLocation } from 'react-router-dom';
 import Navbar from '../NavBar/Navbar';
 import { restaurantData } from '@/mocks/common';
 import ProductSlider from '../ProductSlider/ProductSlider';
@@ -114,7 +115,7 @@ const Home = () => {
         </div>
         <div className=''>
           <div className="pt-[114px] bg-[#161616]">
-            <div className="h-line p-1 h-[30px] overflow-hidden">
+            <div className="h-line p-1 h-[30px]">
               <div className="container">
                 <div className="row">
 
@@ -146,9 +147,9 @@ const Home = () => {
             </div>
             <ProductSlider addProductToCart={addProductToCart} />
           </div>
-          <div className="h-main-sec3 bg-gray-900 pt-5 w-full" ref={productsSectionRef}>
+          <div className="h-main-sec3 bg-gray-900 pt-5 overflow-x-auto" ref={productsSectionRef}>
             <section className="text-white body-font">
-              <div className="lg:px-5 mx-auto lg:w-[1000px] xl:w-[1400px]">
+              <div className="lg:px-5 mx-auto lg:w-auto xl:w-auto md:w-auto md:px-20 sm:w-auto w-[750px]">
                 {products?.map((item: any, index: number) => (
                   <div key={index} className="mb-10" data-category-id={item.id}>
                     <h1 className="text-2xl font-medium title-font text-white  lg:ml-[4rem] mb-3 ml-3">

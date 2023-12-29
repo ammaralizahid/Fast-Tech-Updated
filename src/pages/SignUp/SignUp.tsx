@@ -154,7 +154,7 @@ const Singup: React.FC<SignUpProps> = ({ changePath }) => {
         </form>
       )}
 
-      {verify && (
+      {!verify && (
         <form className="offcanvas-body bg-black" onSubmit={getinfo}>
           <div className="canvas-h1-div-signup ">
             <h1 className="canvas-h1-signup">Join {restaurantData.name} Rewards, Win $500!</h1>
@@ -185,7 +185,7 @@ const Singup: React.FC<SignUpProps> = ({ changePath }) => {
         </form>
       )}
 
-      {info && (
+      {!info && (
         <form className="offcanvas-body bg-black" onSubmit={onSubmit}>
           <div className="canvas-h1-div-signup">
             <h1 className="canvas-h1-signup">Join {restaurantData.name} Rewards, Win $500!</h1>
@@ -203,7 +203,7 @@ const Singup: React.FC<SignUpProps> = ({ changePath }) => {
           <div className="canvas-phone-div2-signup">
             <h1 className="canvas-phone-h12-signup">Password</h1>
             <input
-              className="canvas-phone-input2-signup"
+              className="canvas-phone-input2-signup p-3"
               placeholder="0000000"
               type="text"
               name="password"
@@ -213,7 +213,7 @@ const Singup: React.FC<SignUpProps> = ({ changePath }) => {
           <div className="canvas-phone-div2-signup-email">
             <h1 className="canvas-phone-h12-signup-email">Email</h1>
             <input
-              className="canvas-phone-input2-signup-email"
+              className="canvas-phone-input2-signup-email p-3"
               placeholder="Your Email"
               type="text"
               name="email"
@@ -221,22 +221,22 @@ const Singup: React.FC<SignUpProps> = ({ changePath }) => {
             />
           </div>
           <div className="canvas-phone-fl-name">
-            <div className="container">
+            <div className="container-fluid">
               <div className="row">
-                <div className="col-lg-6">
+                <div className="col-lg-6 p-2">
                   <h1 className="canvas-phone-fl-name-h1">First Name</h1>
                   <input
-                    className="canvas-phone-fl-name-first"
+                    className="canvas-phone-fl-name-first p-3"
                     placeholder="First"
                     type="text"
                     name="f_name"
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-lg-6">
+                <div className="col-lg-6 p-2">
                   <h1 className="canvas-phone-fl-name-h1">Last Name</h1>
                   <input
-                    className="canvas-phone-fl-name-first"
+                    className="canvas-phone-fl-name-first p-3"
                     placeholder="Last"
                     type="text"
                     name="l_name"
